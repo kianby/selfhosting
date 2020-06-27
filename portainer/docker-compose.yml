@@ -16,6 +16,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.portainer.rule=Host(`glances.${DOMAIN}`) && PathPrefix(`/portainer`)
+      - traefik.http.middlewares.test-stripprefix.stripprefix.prefixes=/portainer,/portainer/
       - traefik.http.routers.portainer.entrypoints=web
       - traefik.http.services.portainer.loadbalancer.server.port=9000
 
