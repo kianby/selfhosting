@@ -16,7 +16,7 @@ services:
     expose:
       - 61208
     labels:
-      - traefik.http.routers.glances.rule=Host(`sandbox.com`)
+      - traefik.http.routers.glances.rule=Host(${SITE})
       - traefik.http.services.glances.loadbalancer.server.port=61208
   
 volumes:
