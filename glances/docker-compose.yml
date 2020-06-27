@@ -17,8 +17,7 @@ services:
       - 61208
     labels:
       - traefik.enable=true
-      - traefik.http.routers.glances.rule=Host(`${SITE}`) && Path(`/top`)
-      - traefik.http.middlewares.glances.stripprefix.prefixes=/top,/top/
+      - traefik.http.routers.glances.rule=Host(`glances.${DOMAIN}`)
       - traefik.http.routers.glances.entrypoints=web
       - traefik.http.services.glances.loadbalancer.server.port=61208
 
