@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  glances:
+    container_name: glances
+    image: vimagick/glances
+    volumes:
+      - glances_data:/etc/glances
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - GLANCES_OPT=-w
+    pid: host
+    restart: unless-stopped
+    networks:
+      - srv
+    expose:
+      - 61208
+  
+volumes:
+  glances_data:
