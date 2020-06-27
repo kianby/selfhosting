@@ -9,7 +9,6 @@ services:
       - 80:80
       - 443:443
     networks:
-      - oueb
       - srv
     restart: unless-stopped
     labels:
