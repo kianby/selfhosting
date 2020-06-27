@@ -3,7 +3,7 @@ version: '3'
 services:
   traefik:
     container_name: traefik
-    image: traefik:v2.2
+    image: traefik:v2.2.1
     command:
       - --entrypoints.web.address=:80
       - --providers.docker=true
