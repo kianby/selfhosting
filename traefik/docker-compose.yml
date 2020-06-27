@@ -10,6 +10,7 @@ services:
       - 443:443
     networks:
       - oueb
+      - srv
     restart: unless-stopped
     labels:
       - traefik.enable=true
@@ -27,10 +28,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /srv/docker/server/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
-      - /srv/docker/server/traefik/traefik_dynamic.toml:/etc/traefik/traefik_dynamic.toml:ro
-      - /srv/docker/server/traefik/acme.json:/acme.json
-      - /srv/docker/server/traefik/logs:/logs
+      - /srv/hosting/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+      - /srv/hosting/traefik/traefik_dynamic.toml:/etc/traefik/traefik_dynamic.toml:ro
+      - /srv/hosting/traefik/acme.json:/acme.json
+      - /srv/hosting/traefik/logs:/logs
 
 networks:
   oueb:
