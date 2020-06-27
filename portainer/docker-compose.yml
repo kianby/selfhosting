@@ -11,7 +11,13 @@ services:
     networks:
       - srv
     restart: unless-stopped
-
+    expose:
+      - 9000    
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.portainer.rule=Host(`${SITE}`)/console
+      - traefik.http.routers.portainer.entrypoints=web
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
 
 volumes:
   portainer_data:
