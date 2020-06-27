@@ -22,7 +22,7 @@
     watch = true
     exposedByDefault = false
     swarmMode = false
-    network = "srv"
+    network = "1-docker_srv"
 
 [entryPoints]
   [entryPoints.web]
