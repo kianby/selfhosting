@@ -8,6 +8,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 8080:8080
     networks:
       - srv
     restart: unless-stopped
@@ -31,7 +32,3 @@ services:
       - /srv/hosting/traefik/traefik_dynamic.toml:/etc/traefik/traefik_dynamic.toml:ro
       - /srv/hosting/traefik/acme.json:/acme.json
       - /srv/hosting/traefik/logs:/logs
-
-networks:
-  oueb:
-    driver: bridge
