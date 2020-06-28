@@ -15,9 +15,9 @@ services:
       - --certificatesresolvers.letsencrypt.acme.tlschallenge=true   
     labels: 
       # global redirect to https
-      - traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)
-      - traefik.http.routers.redirs.entrypoints=web
-      - traefik.http.routers.redirs.middlewares=redirect-to-https
+      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+      - traefik.http.routers.http-catchall.entrypoints=web
+      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
     ports:
@@ -29,3 +29,4 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./acme.json:/acme.json
