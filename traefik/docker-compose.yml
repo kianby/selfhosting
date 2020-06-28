@@ -21,6 +21,12 @@ services:
       - traefik.http.routers.http-catchall.middlewares=redirect-to-https
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
+      # Global wildcard certificates
+      - traefik.http.routers.wildcard-certs.tls.certresolver=letsencrypt
+      - traefik.http.routers.wildcard-certs.entrypoints=web
+      - traefik.http.routers.wildcard-certs.tls.domains[0].main=${DOMAIN}
+      - traefik.http.routers.wildcard-certs.tls.domains[0].sans=*.${DOMAIN}      
     ports:
       - 80:80
       - 443:443
