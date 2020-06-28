@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  poste-io:
+    container_name: poste-io
+    image: analogic/poste.io
+    volumes:
+      - /srv/data/poste.io:/data
+    environment:
+      - TZ=${TZ}
+      - HTTPS=OFF
+    restart: unless-stopped
+    ports:
+      - "587:587"
+      - "465:465"
+      - "993:993"
+      - "25:25"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.posteio.rule=Host(`${HOST_MAIL}.${DOMAIN}`)
+      - traefik.http.routers.posteio.entrypoints=web
+      - traefik.http.services.posteio.loadbalancer.server.port=80      
+    networks:
+      - srv
