@@ -30,7 +30,7 @@ services:
       - traefik.http.routers.dashboard.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.dashboard.tls.domains[0].sans=*.${DOMAIN}         
       #- traefik.http.services.dashboard.loadbalancer.server.port=8080
-      - traefik.http.routers.dashboard.middlewares=redirect-to-https
+#      - traefik.http.routers.dashboard.middlewares=redirect-to-https
       # global redirect to https
       #- traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
       #- traefik.http.routers.http-catchall.entrypoints=web
