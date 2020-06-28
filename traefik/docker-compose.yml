@@ -14,12 +14,12 @@ services:
       - --certificatesresolvers.letsencrypt.acme.storage=/acme.json
       - --certificatesresolvers.letsencrypt.acme.tlschallenge=true   
     labels: 
-      # middleware redirect
-      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       # global redirect to https
-      - traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)
-      - traefik.http.routers.redirs.entrypoints=web
-      - traefik.http.routers.redirs.middlewares=redirect-to-https
+      - "traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.redirs.entrypoints=web"
+      - "traefik.http.routers.redirs.middlewares=redirect-to-https"
+      # middleware redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"      
     ports:
       - 80:80
       - 443:443
