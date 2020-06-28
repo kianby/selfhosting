@@ -15,7 +15,11 @@ services:
       - --certificatesresolvers.letsencrypt.acme.tlschallenge=true   
     labels: 
       - traefik.enable=true
-      - traefik.http.services.traefik.loadbalancer.server.port=80
+      - traefik.http.routers.dashboard.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
+      - traefik.http.routers.dashboard.entrypoints=websecure
+      - traefik.http.routers.dashboard.tls=true
+      - traefik.http.routers.dashboard.tls.certresolver=letsencrypt      
+      - traefik.http.services.dashboard.loadbalancer.server.port=8080
       # global redirect to https
       - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
       - traefik.http.routers.http-catchall.entrypoints=web
@@ -31,7 +35,8 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 8080:8080
+    expose:
+      - 8080
     networks:
       - srv
     restart: unless-stopped
