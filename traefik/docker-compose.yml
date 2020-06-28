@@ -15,10 +15,10 @@ services:
       #- --certificatesresolvers.letsencrypt.acme.tlschallenge=true
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
-      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandi
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandiv5
       #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
     environment:
-      - GANDI_API_KEY=${GANDI_API_KEY}
+      - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
       - traefik.enable=true
       - traefik.http.routers.dashboard.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
