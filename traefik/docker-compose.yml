@@ -16,17 +16,18 @@ services:
     labels: 
       - traefik.enable=true
       - traefik.http.routers.dashboard.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
+      - traefik.http.routers.dashboard.entrypoints=web
       - traefik.http.routers.dashboard.entrypoints=websecure
       - traefik.http.routers.dashboard.tls=true
-      - traefik.http.routers.dashboard.tls.certresolver=letsencrypt      
+      - traefik.http.routers.dashboard.tls.certresolver=letsencrypt    
       - traefik.http.services.dashboard.loadbalancer.server.port=8080
       # global redirect to https
-      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
-      - traefik.http.routers.http-catchall.entrypoints=web
-      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+      #- traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+      #- traefik.http.routers.http-catchall.entrypoints=web
+      #- traefik.http.routers.http-catchall.middlewares=redirect-to-https
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
-      - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=false     
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true     
     ports:
       - 80:80
       - 443:443
