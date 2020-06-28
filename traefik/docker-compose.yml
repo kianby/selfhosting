@@ -9,8 +9,13 @@ services:
       - --providers.docker.exposedbydefault=false      
       - --api.insecure # Don't do that in production
       - --entrypoints.web.address=:80      
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.le.acme.email=${LETSENCRYPT_EMAIL}
+      - --certificatesresolvers.le.acme.storage=/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true      
     ports:
       - 80:80
+      - 443:443
       - 8080:8080
     networks:
       - srv
