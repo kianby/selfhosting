@@ -13,7 +13,7 @@ services:
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
       - --certificatesresolvers.letsencrypt.acme.storage=/acme.json
       - --certificatesresolvers.letsencrypt.acme.tlschallenge=true   
-    environment: 
+    labels: 
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       # global redirect to https
