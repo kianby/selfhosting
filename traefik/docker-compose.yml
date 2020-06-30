@@ -12,11 +12,12 @@ services:
       - --entrypoints.websecure.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
       - --certificatesresolvers.letsencrypt.acme.storage=/acme.json
-      #- --certificatesresolvers.letsencrypt.acme.tlschallenge=true
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
       - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandiv5
-      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
+      # staging server
+      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     environment:
       - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
@@ -25,16 +26,16 @@ services:
       - traefik.http.routers.dashboard.entrypoints=web
       - traefik.http.routers.dashboard.entrypoints=websecure
       - traefik.http.routers.dashboard.service=api@internal      
-      - traefik.http.routers.dashboard.tls=true
+      #- traefik.http.routers.dashboard.tls=true
       - traefik.http.routers.dashboard.tls.certresolver=letsencrypt
       - traefik.http.routers.dashboard.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.dashboard.tls.domains[0].sans=*.${DOMAIN}         
       #- traefik.http.services.dashboard.loadbalancer.server.port=8080
 #      - traefik.http.routers.dashboard.middlewares=redirect-to-https
       # global redirect to https
-      #- traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
-      #- traefik.http.routers.http-catchall.entrypoints=web
-      #- traefik.http.routers.http-catchall.middlewares=redirect-to-https
+      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+      - traefik.http.routers.http-catchall.entrypoints=web
+      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true     
@@ -48,4 +49,4 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-#      - /srv/hosting/traefik/acme.json:/acme.json
+      - /srv/hosting/traefik/acme.json:/acme.json
