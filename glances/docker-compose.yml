@@ -20,7 +20,7 @@ services:
       - traefik.http.routers.glances.rule=Host(`${HOST_GLANCES}.${DOMAIN}`)
       - traefik.http.routers.glances.entrypoints=websecure
       #- traefik.http.routers.glances.tls=true
-      - traefik.http.routers.glances.tls.certresolver=letsencrypt
+      #- traefik.http.routers.glances.tls.certresolver=letsencrypt
       #- traefik.http.routers.glances.middlewares=redirect-to-https
       - traefik.http.services.glances.loadbalancer.server.port=61208
 
