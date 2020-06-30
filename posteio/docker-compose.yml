@@ -19,6 +19,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.posteio.rule=Host(`${HOST_MAIL}.${DOMAIN}`)
       - traefik.http.routers.posteio.entrypoints=websecure
+      - traefik.http.routers.posteio.tls=true
       - traefik.http.services.posteio.loadbalancer.server.port=80      
     networks:
       - srv
