@@ -17,7 +17,7 @@ services:
       - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandiv5
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
       # staging server
-      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      #- --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     environment:
       - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
