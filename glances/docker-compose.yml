@@ -17,7 +17,7 @@ services:
       - 61208
     labels:
       - traefik.enable=true
-      - traefik.http.routers.glances.rule=Host(`${HOST_GLANCES}.${DOMAIN}`)
+      - traefik.http.routers.glances.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_GLANCES}`)
       - traefik.http.routers.glances.entrypoints=websecure
       - traefik.http.routers.glances.tls=true
       - traefik.http.services.glances.loadbalancer.server.port=61208
