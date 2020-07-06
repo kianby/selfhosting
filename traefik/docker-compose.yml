@@ -8,7 +8,6 @@ services:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false      
       - --api=true
-      - --api.statistics=true
       - --entrypoints.web.address=:80      
       - --entrypoints.websecure.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
