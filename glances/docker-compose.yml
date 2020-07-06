@@ -21,6 +21,10 @@ services:
       - traefik.http.routers.glances.entrypoints=websecure
       - traefik.http.routers.glances.tls=true
       - traefik.http.services.glances.loadbalancer.server.port=61208
+      - traefik.http.routers.glances.middlewares=glancesRedir,glancesPStrip
+      - traefik.http.middlewares.glancesPStrip.stripprefix.prefixes=${PATH_GLANCES}
+      - traefik.http.middlewares.glancesRedir.redirectregex.regex=^(.*)${PATH_GLANCES}$$
+      - traefik.http.middlewares.glancesRedir.redirectregex.replacement=$${1}${PATH_GLANCES}/      
 
 volumes:
   glances_data:
