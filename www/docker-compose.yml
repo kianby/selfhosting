@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  www:
+    container_name: www
+    image: kianby/www-madyanne
+    restart: unless-stopped
+    networks:
+      - srv
+    expose:
+      - 80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.www.rule=Host(`${HOST_WWW}.${DOMAIN}`) 
+      - traefik.http.routers.www.entrypoints=websecure
+      - traefik.http.routers.www.tls=true
+      - traefik.http.services.www.loadbalancer.server.port=80
