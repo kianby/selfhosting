@@ -7,7 +7,8 @@ services:
     command:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false      
-      - --api.insecure # Don't do that in production
+      - --api=true
+      - --api.statistics=true
       - --entrypoints.web.address=:80      
       - --entrypoints.websecure.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
@@ -22,16 +23,16 @@ services:
       - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
       - traefik.enable=true
-      - traefik.http.routers.dashboard.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
-      - traefik.http.routers.dashboard.entrypoints=web
-      - traefik.http.routers.dashboard.entrypoints=websecure
-      - traefik.http.routers.dashboard.service=api@internal      
-      #- traefik.http.routers.dashboard.tls=true
-      - traefik.http.routers.dashboard.tls.certresolver=letsencrypt
-      - traefik.http.routers.dashboard.tls.domains[0].main=${DOMAIN}
-      - traefik.http.routers.dashboard.tls.domains[0].sans=*.${DOMAIN}         
-      #- traefik.http.services.dashboard.loadbalancer.server.port=8080
-#      - traefik.http.routers.dashboard.middlewares=redirect-to-https
+      - traefik.http.routers.api.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
+      - traefik.http.routers.api.entrypoints=web
+      - traefik.http.routers.api.entrypoints=websecure
+      - traefik.http.routers.api.service=api@internal   
+      - traefik.http.routers.api.middlewares=auth
+      - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}
+      # request widlcard certificate
+      - traefik.http.routers.api.tls.certresolver=letsencrypt
+      - traefik.http.routers.api.tls.domains[0].main=${DOMAIN}
+      - traefik.http.routers.api.tls.domains[0].sans=*.${DOMAIN}
       # global redirect to https
       - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
       - traefik.http.routers.http-catchall.entrypoints=web
