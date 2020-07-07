@@ -8,7 +8,7 @@ services:
     networks:
       - srv
     environment:
-      DELUGE_LOGLEVEL: error
+      DELUGE_LOGLEVEL: info
       PGID: ${PUID}
       PUID: ${PGID}
       TZ: ${TZ}
