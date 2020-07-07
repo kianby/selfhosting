@@ -46,7 +46,11 @@ services:
       - traefik.http.routers.torrent.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_TORRENT}`) 
       - traefik.http.routers.torrent.entrypoints=websecure
       - traefik.http.routers.torrent.tls=true
-      - traefik.http.services.torrent.loadbalancer.server.port=80    
+      - traefik.http.services.torrent.loadbalancer.server.port=80
+      - traefik.http.routers.torrent.middlewares=torrentRedir,torrentPStrip
+      - traefik.http.middlewares.torrentPStrip.stripprefix.prefixes=${PATH_TORRENT}
+      - traefik.http.middlewares.torrentRedir.redirectregex.regex=^(.*)${PATH_TORRENT}$$
+      - traefik.http.middlewares.torrentRedir.redirectregex.replacement=$${1}${PATH_TORRENT}/            
     
 volumes:
   deluge_config:
