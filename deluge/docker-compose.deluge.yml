@@ -33,7 +33,7 @@ services:
 
   torrent:
     container_name: torrent
-    image: nginx:1.19.0-alpine
+    image: kianby/nginx-streaming
     restart: unless-stopped
     networks:
       - srv
