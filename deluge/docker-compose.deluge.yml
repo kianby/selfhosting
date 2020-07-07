@@ -13,7 +13,8 @@ services:
     expose:
       - 8112
     ports:
-      - ${DELUGE_TORRENT_PORT}:${DELUGE_TORRENT_PORT}
+      - ${DELUGE_TORRENT_PORT}:${DELUGE_TORRENT_PORT}/tcp
+      - ${DELUGE_TORRENT_PORT}:${DELUGE_TORRENT_PORT}/udp
     volumes:
       - deluge_config:/config:rw
       - deluge_downloads:/downloads:rw      
