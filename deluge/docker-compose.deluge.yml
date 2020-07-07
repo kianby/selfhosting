@@ -9,10 +9,10 @@ services:
       - srv
     environment:
       DELUGE_LOGLEVEL: info
-      PGID: ${PUID}
-      PUID: ${PGID}
+#      PGID: ${PUID}
+#      PUID: ${PGID}
       TZ: ${TZ}
-      UMASK_SET: '022'      
+#      UMASK_SET: '022'      
     expose:
       - 8112
     volumes:
@@ -24,14 +24,30 @@ services:
       - traefik.http.routers.deluge.entrypoints=websecure
       - traefik.http.routers.deluge.tls=true
       - traefik.http.services.deluge.loadbalancer.server.port=8112
-      - traefik.http.routers.deluge.middlewares=delugeHeader,sameOriginHeader,auth,delugeRedir,delugePStrip
-      - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}
+      - traefik.http.routers.deluge.middlewares=delugeHeader,sameOriginHeader,delugeRedir,delugePStrip
       - traefik.http.middlewares.delugeHeader.headers.customrequestheaders.X-Deluge-Base=${PATH_DELUGE}/
       - traefik.http.middlewares.sameOriginHeader.headers.customrequestheaders.X-Frame-Options=SAMEORIGIN
       - traefik.http.middlewares.delugePStrip.stripprefix.prefixes=${PATH_DELUGE}
       - traefik.http.middlewares.delugeRedir.redirectregex.regex=^(.*)${PATH_DELUGE}$$
       - traefik.http.middlewares.delugeRedir.redirectregex.replacement=$${1}${PATH_DELUGE}/        
 
+  torrent:
+    container_name: torrent
+    image: nginx:1.19.0-alpine
+    restart: unless-stopped
+    networks:
+      - srv
+    volumes:
+      - deluge_downloads:/usr/share/nginx/html:ro
+    expose:
+      - 80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.torrent.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_TORRENT}`) 
+      - traefik.http.routers.torrent.entrypoints=websecure
+      - traefik.http.routers.torrent.tls=true
+      - traefik.http.services.torrent.loadbalancer.server.port=80    
+    
 volumes:
   deluge_config:
   deluge_downloads:
