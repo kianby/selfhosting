@@ -9,9 +9,9 @@ services:
       - srv
     environment:
       DELUGE_LOGLEVEL: error
-      PGID: '1001'
-      PUID: '1001'
-      TZ: '"Europe/Paris"'
+      PGID: ${PUID}
+      PUID: ${PGID}
+      TZ: ${TZ}
       UMASK_SET: '022'      
     expose:
       - 8112
@@ -21,5 +21,6 @@ services:
       - traefik.http.routers.deluge.entrypoints=websecure
       - traefik.http.routers.deluge.tls=true
       - traefik.http.services.deluge.loadbalancer.server.port=8112
-      - traefik.http.routers.deluge.middlewares=delugeHeader
+      - traefik.http.routers.deluge.middlewares=delugeHeader,sameOriginHeader
       - traefik.http.middlewares.delugeHeader.headers.customrequestheaders.X-Deluge-Base=${PATH_DELUGE}/
+      - traefik.http.middlewares.sameOriginHeader.headers.customrequestheaders.X-Frame-Options=SAMEORIGIN
