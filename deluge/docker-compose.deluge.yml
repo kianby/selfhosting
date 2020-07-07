@@ -9,12 +9,11 @@ services:
       - srv
     environment:
       DELUGE_LOGLEVEL: info
-#      PGID: ${PUID}
-#      PUID: ${PGID}
-      TZ: ${TZ}
-#      UMASK_SET: '022'      
+      TZ: ${TZ}    
     expose:
       - 8112
+    ports:
+      - ${DELUGE_TORRENT_PORT}:${DELUGE_TORRENT_PORT}
     volumes:
       - deluge_config:/config:rw
       - deluge_downloads:/downloads:rw      
