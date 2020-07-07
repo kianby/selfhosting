@@ -38,7 +38,7 @@ services:
     networks:
       - srv
     volumes:
-      - deluge_downloads:/usr/share/nginx/html/downloads:ro
+      - deluge_downloads:/downloads:ro
     expose:
       - 80
     labels:
