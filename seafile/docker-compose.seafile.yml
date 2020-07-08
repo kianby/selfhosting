@@ -24,7 +24,7 @@ services:
       - seafile-memcached
     environment:
       DB_HOST: seafile-db
-      DB_ROOT_PASSWD: seafile
+      DB_ROOT_PASSWD: ${DB_ROOT_PASSWORD}
       SEAFILE_ADMIN_EMAIL: ${ADMIN_EMAIL}
       SEAFILE_ADMIN_PASSWORD: ${SEAFILE_ADMIN_PASSWORD}
       SEAFILE_SERVER_HOSTNAME: ${SEAFILE_HOSTNAME}
