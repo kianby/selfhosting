@@ -49,4 +49,4 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /srv/hosting/traefik/acme.json:/acme.json
+      - ${ROOT_INSTALL}/hosting/traefik/acme.json:/acme.json

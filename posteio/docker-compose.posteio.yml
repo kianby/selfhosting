@@ -5,7 +5,7 @@ services:
     container_name: poste-io
     image: analogic/poste.io
     volumes:
-      - /srv/data/poste.io:/data
+      - ${ROOT_INSTALL}/data/poste.io:/data
     environment:
       - TZ=${TZ}
       - HTTPS=OFF
