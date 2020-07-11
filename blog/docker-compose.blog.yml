@@ -5,7 +5,7 @@ services:
     container_name: stacosys
     image: kianby/stacosys
     volumes:
-      - ${ROOT_INSTALL}/data/stacosys/config.ini:/stacosys/config.ini
+      - ${ROOT_INSTALL}/data/stacosys:/config
     networks:
       - srv
     restart: unless-stopped
