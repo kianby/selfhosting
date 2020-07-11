@@ -11,3 +11,17 @@ services:
     restart: unless-stopped
     expose:
       - 8100
+  blog:
+    container_name: blog
+    image: kianby/blogduyax 
+    networks: 
+      - srv
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.blog.rule=Host(`${HOST_BLOG}.${DOMAIN}`)
+      - traefik.http.routers.blog.entrypoints=websecure
+      - traefik.http.routers.blog.tls=true
+      - traefik.http.services.blog.loadbalancer.server.port=80        
