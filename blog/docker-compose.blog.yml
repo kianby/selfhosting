@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  stacosys:
+    container_name: stacosys
+    image: kianby/stacosys
+    volumes:
+      - ${ROOT_INSTALL}/data/stacosys/config.ini:/stacosys/config.ini
+    networks:
+      - srv
+    restart: unless-stopped
+    expose:
+      - 8100
