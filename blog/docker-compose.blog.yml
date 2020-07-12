@@ -13,7 +13,9 @@ services:
       - 8100
   blog:
     container_name: blog
-    image: kianby/blogduyax 
+    image: kianby/blogduyax
+    depends_on:
+      - stacosys     
     networks: 
       - srv
     restart: unless-stopped
