@@ -12,6 +12,8 @@ services:
       SYMFONY__ENV__MAILER_PASSWORD: '~'
       SYMFONY__ENV__MAILER_USER: '~'
     image: wallabag/wallabag
+    networks: 
+      - srv    
     expose:
     - 80
     volumes:
