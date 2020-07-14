@@ -6,7 +6,7 @@ services:
     image: shaarli/shaarli
     volumes:
       - shaarli-cache:/var/www/shaarli/cache
-      - ${ROOT_INSTALL}/data/shaarli:/var/www/shaarli/data      
+      - shaarli-data:/var/www/shaarli/data      
     networks:
       - srv
     restart: unless-stopped
@@ -20,4 +20,5 @@ services:
       - traefik.http.services.shaarli.loadbalancer.server.port=80       
 
 volumes:
+  shaarli-data:
   shaarli-cache:      
