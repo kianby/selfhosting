@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  shaarli:
+    container_name: shaarli
+    image: shaarli/shaarli
+    volumes:
+      - shaarli-cache:/var/www/shaarli/cache
+      - ${ROOT_INSTALL}/data/shaarli:/var/www/shaarli/data      
+    networks:
+      - srv
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.shaarli.rule=Host(`${HOST_SHAARLI}.${DOMAIN}`)
+      - traefik.http.routers.shaarli.entrypoints=websecure
+      - traefik.http.routers.shaarli.tls=true
+      - traefik.http.services.shaarli.loadbalancer.server.port=80       
