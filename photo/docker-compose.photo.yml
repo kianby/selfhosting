@@ -12,8 +12,6 @@ services:
       - USERNAME=${SEAFILE_REGULAR_USER}
       - PASSWORD=${SEAFILE_REGULAR_PASSWORD}
       - DATA_DIR=/library
-#      - SEAFILE_UID=1000
-#      - SEAFILE_GID=1000
     networks:
       - srv      
     volumes:
