@@ -7,10 +7,10 @@ services:
     container_name: seafcli-photo
     restart: unless-stopped
     environment:
-      - SEAF_LIBRARY_UUID=${SEAFILE_PHOTO_LIBRARY}
-      - SEAF_SERVER_URL=https://${HOST_SEAFILE}.${DOMAIN}
-      - SEAF_USERNAME=${SEAFILE_REGULAR_USER}
-      - SEAF_PASSWORD=${SEAFILE_REGULAR_PASSWORD}
+      - SEAF_LIBRARY_UUID="${SEAFILE_PHOTO_LIBRARY}"
+      - SEAF_SERVER_URL="https://${HOST_SEAFILE}.${DOMAIN}"
+      - SEAF_USERNAME="${SEAFILE_REGULAR_USER}"
+      - SEAF_PASSWORD="${SEAFILE_REGULAR_PASSWORD}"
     networks:
       - srv      
     volumes:
