@@ -3,19 +3,18 @@ version: '3'
 services:
   seafcli-photo:
     restart: always
-    image: gronis/seafile-client
+    image: flowgunso/seafile-client
     container_name: seafcli-photo
+    restart: unless-stopped
     environment:
-      - LIBRARY_ID=${SEAFILE_PHOTO_LIBRARY}
-      - SERVER_URL=https://${HOST_SEAFILE}.${DOMAIN}
-      - SERVER_PORT=443
-      - USERNAME=${SEAFILE_REGULAR_USER}
-      - PASSWORD=${SEAFILE_REGULAR_PASSWORD}
-      - DATA_DIR=/images
+      - SEAF_LIBRARY_UUID=${SEAFILE_PHOTO_LIBRARY}
+      - SEAF_SERVER_URL=https://${HOST_SEAFILE}.${DOMAIN}
+      - SEAF_USERNAME=${SEAFILE_REGULAR_USER}
+      - SEAF_PASSWORD=${SEAFILE_REGULAR_PASSWORD}
     networks:
       - srv      
     volumes:
-      - images:/images
+      - images:/library
 
   pigallery2:
     container_name: pigallery2
