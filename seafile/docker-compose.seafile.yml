@@ -10,7 +10,7 @@ services:
     networks:
       - srv
     volumes:
-      - ${ROOT_INSTALL}/data/seafile/mysql/db:/var/lib/mysql:rw
+      - seafile_db:/var/lib/mysql:rw
   seafile-memcached:
     container_name: seafile-memcached
     entrypoint: memcached -m 256
@@ -36,10 +36,14 @@ services:
     expose:
       - 80
     volumes:
-      - ${ROOT_INSTALL}/data/seafile/data:/shared:rw
+      - seafile_data:/shared:rw
     labels:
       - traefik.enable=true
       - traefik.http.routers.seafile.rule=Host(`${HOST_SEAFILE}.${DOMAIN}`)
       - traefik.http.routers.seafile.entrypoints=websecure
       - traefik.http.routers.seafile.tls=true
       - traefik.http.services.seafile.loadbalancer.server.port=80        
+
+volumes:
+  seafile_db:
+  seafile_data:
