@@ -34,7 +34,7 @@ services:
     - pigallerydb_data:/app/data/db:rw
     - pigallery_tmp:/app/data/tmp:rw
 #    - images:/app/data/images:ro
-      -images:/images:ro
+    - images:/images:ro
     labels:
       - traefik.enable=true
       - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
