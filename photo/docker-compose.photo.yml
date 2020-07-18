@@ -36,10 +36,10 @@ services:
     - images:/app/data/images:ro
     labels:
       - traefik.enable=true
-      - traefik.http.routers.selfoss.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
-      - traefik.http.routers.selfoss.entrypoints=websecure
-      - traefik.http.routers.selfoss.tls=true
-      - traefik.http.services.selfoss.loadbalancer.server.port=80
+      - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
+      - traefik.http.routers.pigallery_config.entrypoints=websecure
+      - traefik.http.routers.pigallery_config.tls=true
+      - traefik.http.services.pigallery_config.loadbalancer.server.port=80
 
 volumes:
   images:
