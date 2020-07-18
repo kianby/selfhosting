@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  seafcli-photo:
+    restart: always
+    image: gronis/seafile-client
+    container_name: seafile-client
+    environment:
+      - LIBRARY_ID=${SEAFILE_PHOTO_LIBRARY}
+      - SERVER_URL=${HOST_SEAFILE}.${DOMAIN}
+      - SERVER_PORT=443
+      - USERNAME=${SEAFILE_REGULAR_USER}
+      - PASSWORD=${SEAFILE_REGULAR_PASSWORD}
+      - DATA_DIR=/images
+    networks:
+      - srv      
+    volumes:
+      - images:/images
+
+  pigallery2:
+    container_name: pigallery2
+    environment:
+      NODE_ENV: production
+    image: bpatrik/pigallery2:latest
+    networks:
+      - srv    
+    expose:
+      - 80
+    restart: unless-stopped
+    volumes:
+    - pigallery_config:/app/data/config:rw
+    - pigallerydb_data:/app/data/db:rw
+    - pigallery_tmp:/app/data/tmp:rw
+    - images:/app/data/images:ro
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.selfoss.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
+      - traefik.http.routers.selfoss.entrypoints=websecure
+      - traefik.http.routers.selfoss.tls=true
+      - traefik.http.services.selfoss.loadbalancer.server.port=80
+
+volumes:
+  images:
+  pigallerydb_data:
+  pigallery_tmp:
+  pigallery_config:
