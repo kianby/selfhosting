@@ -5,7 +5,7 @@ services:
     container_name: wikijs
     image: requarks/wiki:2
     volumes:
-      - ${ROOT_INSTALL}/data/wikijs:/data
+      - ${ROOT_INSTALL}/data/wikijs/storage.sqlite:/wiki/storage.sqlite
     networks:
       - srv
     restart: unless-stopped
@@ -13,7 +13,7 @@ services:
       - 3000
     environment:
       - DB_TYPE=sqlite
-      - DB_FILEPATH=/data/wiki.db
+      - DB_FILEPATH=storage.sqlite
     labels:
       - traefik.enable=true
       - traefik.http.routers.wikijs.rule=Host(`${HOST_WIKIJS}.${DOMAIN}`)
