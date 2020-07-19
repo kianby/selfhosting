@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  wikijs:
+    container_name: wikijs
+    image: requarks/wiki:2
+    volumes:
+      - ${ROOT_INSTALL}/data/wikijs:/data
+    networks:
+      - srv
+    restart: unless-stopped
+    expose:
+      - 3000
+    environment:
+      - DB_TYPE=sqlite
+      - DB_FILEPATH=/data/wiki.db
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wikijs.rule=Host(`${HOST_WIKIJS}.${DOMAIN}`)
+      - traefik.http.routers.wikijs.entrypoints=websecure
+      - traefik.http.routers.wikijs.tls=true
+      - traefik.http.services.wikijs.loadbalancer.server.port=3000       
+      
