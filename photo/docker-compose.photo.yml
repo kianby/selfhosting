@@ -32,6 +32,8 @@ services:
     - pigallerydb_data:/app/data/db:rw
     - pigallery_tmp:/app/data/tmp:rw
     - ${ROOT_INSTALL}/data/sync/Photos:/app/data/images:ro
+    healthcheck:
+      disable: true    
     labels:
       - traefik.enable=true
       - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
