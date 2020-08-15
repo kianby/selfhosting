@@ -41,6 +41,8 @@ services:
       - deluge_downloads:/downloads:ro
     expose:
       - 80
+    ports:
+      - 8000:80
     labels:
       - traefik.enable=true
       - traefik.http.routers.torrent.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_TORRENT}`) 
