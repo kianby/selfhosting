@@ -41,8 +41,9 @@ services:
       - deluge_downloads:/downloads:ro
     expose:
       - 80
+    # shortcut to bypass traefik limitation
     ports:
-      - 8000:80
+      - ${DOWNLOAD_HTTP_PORT}:80
     labels:
       - traefik.enable=true
       - traefik.http.routers.torrent.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_TORRENT}`) 
