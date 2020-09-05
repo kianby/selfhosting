@@ -16,7 +16,7 @@ services:
     networks:
       - srv      
     volumes:
-      - ${ROOT_INSTALL}/data/raneto/content:/library
+      - raneto_content:/library
 
   raneto:
     image: linuxserver/raneto
@@ -27,6 +27,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ${ROOT_INSTALL}/data/raneto:/config
+      - raneto_content:/config/content
     expose:
       - 3000
     restart: unless-stopped
@@ -38,3 +39,6 @@ services:
       - traefik.http.routers.raneto.entrypoints=websecure
       - traefik.http.routers.raneto.tls=true
       - traefik.http.services.raneto.loadbalancer.server.port=3000 
+
+volumes:
+  raneto_content:
