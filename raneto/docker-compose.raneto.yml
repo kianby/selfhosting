@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+
+  seafcli-notes:
+    image: snegov/seafile-client
+    container_name: seafcli-notes
+    restart: unless-stopped
+    environment:
+      - LIBRARY_ID=${SEAFILE_NOTES_LIBRARY}
+      - SERVER_HOST=${HOST_SEAFILE}.${DOMAIN}
+      - SERVER_PORT=443
+      - USERNAME=${SEAFILE_REGULAR_USER}
+      - PASSWORD=${SEAFILE_REGULAR_PASSWORD}
+      - DATA_DIR=/library
+    networks:
+      - srv      
+    volumes:
+      - ${ROOT_INSTALL}/data/raneto/content:/library
+
   raneto:
     image: linuxserver/raneto
     container_name: raneto
