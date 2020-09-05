@@ -17,7 +17,7 @@ services:
       - srv    
     labels:
       - traefik.enable=true
-      - traefik.http.routers.wallabag.rule=Host(`${HOST_RANETO}.${DOMAIN}`)
-      - traefik.http.routers.wallabag.entrypoints=websecure
-      - traefik.http.routers.wallabag.tls=true
-      - traefik.http.services.wallabag.loadbalancer.server.port=3000 
+      - traefik.http.routers.raneto.rule=Host(`${HOST_RANETO}.${DOMAIN}`)
+      - traefik.http.routers.raneto.entrypoints=websecure
+      - traefik.http.routers.raneto.tls=true
+      - traefik.http.services.raneto.loadbalancer.server.port=3000 
