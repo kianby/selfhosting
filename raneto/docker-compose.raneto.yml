@@ -27,7 +27,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ${ROOT_INSTALL}/data/raneto:/config
-      - raneto_content:/config/content
+      - raneto_content/Notes:/config/content
     expose:
       - 3000
     restart: unless-stopped
