@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  raneto:
+    image: linuxserver/raneto
+    container_name: raneto
+    environment:
+      - PUID=${PUID}
+      - PGID=${GUID}
+      - TZ=${TZ}
+    volumes:
+      - ${ROOT_INSTALL}/data/raneto:/config
+    expose:
+      - 3000
+    restart: unless-stopped
+    networks: 
+      - srv    
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wallabag.rule=Host(`${HOST_RANETO}.${DOMAIN}`)
+      - traefik.http.routers.wallabag.entrypoints=websecure
+      - traefik.http.routers.wallabag.tls=true
+      - traefik.http.services.wallabag.loadbalancer.server.port=80 
