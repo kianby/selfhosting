@@ -19,13 +19,16 @@ services:
       - ${ROOT_INSTALL}/data/sync_notes:/library
 
   dokuwiki:
-    image: 'docker.io/bitnami/dokuwiki:20200729-debian-10'
+    image: linuxserver/dokuwiki
     container_name: dokuwiki
     restart: unless-stopped
     expose:
       - 8080
+    environment:
+      - TZ=${TZ}
+      - APP_URL=/ #optional      
     volumes:
-      - ${ROOT_INSTALL}/data/sync_notes/Notes:/bitnami/dokuwiki
+      - ${ROOT_INSTALL}/data/sync_notes/Notes:/config
     networks:
       - srv    
     labels:
