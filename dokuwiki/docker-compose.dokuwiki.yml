@@ -11,7 +11,7 @@ services:
       - TZ=${TZ}
       - APP_URL=/ #optional      
     volumes:
-      - ${ROOT_INSTALL}/dokuwiki:/config
+      - ${ROOT_INSTALL}/data/dokuwiki:/config
     networks:
       - srv    
     labels:
