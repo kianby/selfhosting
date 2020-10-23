@@ -12,7 +12,7 @@ services:
     security_opt:
       - apparmor:unconfined
     environment:
-      - DOCKER_HOST=proxy:2375      
+      - DOCKER_HOST=docker-proxy:2375      
     volumes:
       - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
