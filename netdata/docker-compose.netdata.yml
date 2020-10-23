@@ -11,6 +11,8 @@ services:
       - SYS_PTRACE
     security_opt:
       - apparmor:unconfined
+    environment:
+      - DOCKER_HOST=proxy:2375      
     volumes:
       - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
@@ -28,6 +30,15 @@ services:
       - traefik.http.routers.netdata.entrypoints=websecure
       - traefik.http.routers.netdata.tls=true
       - traefik.http.services.netdata.loadbalancer.server.port=19999     
+  docker-proxy:
+    image: tecnativa/docker-socket-proxy
+    container_name: docker-proxy
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - CONTAINERS=1
+    networks:
+      - srv      
 
 volumes:
   netdataconfig:
