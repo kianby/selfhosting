@@ -31,7 +31,9 @@ services:
       - traefik.http.routers.netdata.tls=true
       - traefik.http.routers.netdata.middlewares=auth
       - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH} 
-      - traefik.http.services.netdata.loadbalancer.server.port=19999    
+      - traefik.http.services.netdata.loadbalancer.server.port=19999   
+    healthcheck:
+      disable: true
   docker-proxy:
     image: tecnativa/docker-socket-proxy
     container_name: docker-proxy
@@ -40,9 +42,7 @@ services:
     environment:
       - CONTAINERS=1
     networks:
-      - srv
-    healthcheck:
-      disable: true            
+      - srv 
 
 volumes:
   netdataconfig:
