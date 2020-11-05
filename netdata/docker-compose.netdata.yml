@@ -40,7 +40,9 @@ services:
     environment:
       - CONTAINERS=1
     networks:
-      - srv      
+      - srv
+    healthcheck:
+      disable: true            
 
 volumes:
   netdataconfig:
