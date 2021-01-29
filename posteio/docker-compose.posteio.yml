@@ -11,7 +11,6 @@ services:
       - HTTPS=OFF
     restart: unless-stopped
     ports:
-      - "587:587"
       - "465:465"
       - "993:993"
       - "25:25"
