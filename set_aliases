@@ -1,0 +1,10 @@
+#!/bin/bash
+# docker
+docker-compose ()
+{
+    /usr/local/bin/docker-compose $(find -name 'docker-compose*.yml' -type f -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
+}
+
+alias up='docker-compose --env-file /srv/hosting/.env up -d'
+alias down='docker-compose --env-file /srv/hosting/.env down'
+
