@@ -1,9 +1,9 @@
 #!/bin/bash
 # override docker-compose
-#   perm 444 ignores YAML files without other read-only permission
+#   non executable YAML files are skipped (aka disabled services)
 docker-compose ()
 {
-    /usr/local/bin/docker-compose $(find -name 'docker-compose*.yml' -type f -perm 444 -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
+    /usr/local/bin/docker-compose $(find -name 'docker-compose*.yml' -type f -perm -u+x -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
 }
 
 alias up='docker-compose --env-file /srv/hosting/.env up -d'
