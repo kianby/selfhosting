@@ -16,5 +16,3 @@ services:
       - srv
     environment:
       - VIRTUAL_HOST=${HOST_DOKUWIKI}.${DOMAIN}    
-
-
