@@ -3,28 +3,16 @@ version: '3'
 services:
   glances:
     container_name: glances
-    image: vimagick/glances
+    image: nicolargo/glances:3.2.0
     volumes:
-      - glances_data:/etc/glances
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - GLANCES_OPT=-w
+      - GLANCES_OPT="-w"
     pid: host
-    restart: unless-stopped
     networks:
       - srv
     expose:
       - 61208
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.glances.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_GLANCES}`)
-      - traefik.http.routers.glances.entrypoints=websecure
-      - traefik.http.routers.glances.tls=true
-      - traefik.http.services.glances.loadbalancer.server.port=61208
-      - traefik.http.routers.glances.middlewares=glancesRedir,glancesPStrip
-      - traefik.http.middlewares.glancesPStrip.stripprefix.prefixes=${PATH_GLANCES}
-      - traefik.http.middlewares.glancesRedir.redirectregex.regex=^(.*)${PATH_GLANCES}$$
-      - traefik.http.middlewares.glancesRedir.redirectregex.replacement=$${1}${PATH_GLANCES}/      
-
-volumes:
-  glances_data:
+    environment:
+      - VIRTUAL_HOST=${HOST_GLANCES}.${DOMAIN}
+      - VIRTUAL_PORT=61208
