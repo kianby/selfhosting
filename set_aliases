@@ -1,11 +1,13 @@
 #!/bin/bash
 # override docker-compose
 #   non executable YAML files are skipped (aka disabled services)
+#export DOCKER_COMPOSE_BIN=/usr/lib/docker/cli-plugins/docker-compose
+export DOCKER_COMPOSE_BIN='/usr/bin/docker compose'
 docker-compose ()
 {
-    /usr/local/bin/docker-compose $(find -name 'docker-compose*.yml' -type f -perm -u+x -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
+    $DOCKER_COMPOSE_BIN $(find -name 'docker-compose*.yml' -type f -perm -u+x -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
 }
 
-alias up='docker-compose --env-file /srv/hosting/.env up -d'
-alias down='docker-compose --env-file /srv/hosting/.env down'
+#alias up='docker-compose --env-file ing/.env up -d'
+#alias down='docker-compose --env-file /srv/hosting/.env down'
 
