@@ -21,9 +21,5 @@ services:
     restart: unless-stopped
     expose:
       - 80
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.blog.rule=Host(`${HOST_BLOG}.${DOMAIN}`)
-      - traefik.http.routers.blog.entrypoints=websecure
-      - traefik.http.routers.blog.tls=true
-      - traefik.http.services.blog.loadbalancer.server.port=80        
+    environment:
+      - VIRTUAL_HOST=${HOST_BLOG}.${DOMAIN}      

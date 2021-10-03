@@ -11,12 +11,9 @@ services:
     restart: unless-stopped
     expose:
       - 8888
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.selfoss.rule=Host(`${HOST_SELFOSS}.${DOMAIN}`)
-      - traefik.http.routers.selfoss.entrypoints=websecure
-      - traefik.http.routers.selfoss.tls=true
-      - traefik.http.services.selfoss.loadbalancer.server.port=8888       
+    environment:
+      - VIRTUAL_HOST=${HOST_SELFOSS}.${DOMAIN}
+      - VIRTUAL_PORT=8888      
 
 volumes: 
   selfoss_data:      

@@ -9,9 +9,6 @@ services:
       - srv
     expose:
       - 80
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.www.rule=Host(`${HOST_WWW}.${DOMAIN}`) 
-      - traefik.http.routers.www.entrypoints=websecure
-      - traefik.http.routers.www.tls=true
-      - traefik.http.services.www.loadbalancer.server.port=80
+    environment:
+      - VIRTUAL_HOST=${DOMAIN},${HOST_WWW}.${DOMAIN}
+
