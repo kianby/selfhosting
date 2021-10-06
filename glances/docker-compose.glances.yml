@@ -3,16 +3,15 @@ version: '3'
 services:
   glances:
     container_name: glances
-    image: nicolargo/glances:3.2.0
+    image: nicolargo/glances:3.2.3.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
-      - GLANCES_OPT="-w"
     pid: host
     networks:
       - srv
     expose:
       - 61208
     environment:
+      - GLANCES_OPT=-w    
       - VIRTUAL_HOST=${HOST_GLANCES}.${DOMAIN}
       - VIRTUAL_PORT=61208

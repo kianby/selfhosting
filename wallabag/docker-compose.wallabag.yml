@@ -4,13 +4,6 @@ services:
   wallabag:
     container_name: wallabag
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      SYMFONY__ENV__DOMAIN_NAME: https://${HOST_WALLABAG}.${DOMAIN}
-      SYMFONY__ENV__FOSUSER_REGISTRATION: "false"
-      SYMFONY__ENV__FROM_EMAIL: ${ADMIN_EMAIL}
-      SYMFONY__ENV__MAILER_HOST: 127.0.0.1
-      SYMFONY__ENV__MAILER_PASSWORD: '~'
-      SYMFONY__ENV__MAILER_USER: '~'
     image: wallabag/wallabag
     networks: 
       - srv    
@@ -20,6 +13,8 @@ services:
     - wallabag_data:/var/www/wallabag/data:rw
     - wallabag_images:/var/www/wallabag/web/assets/images:rw
     environment:
+      - SYMFONY__ENV__DOMAIN_NAME="https://${HOST_WALLABAG}.${DOMAIN}"
+      - SYMFONY__ENV__FOSUSER_REGISTRATION=false    
       - VIRTUAL_HOST=${HOST_WALLABAG}.${DOMAIN}
 
 volumes:
