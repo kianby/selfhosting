@@ -29,6 +29,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${ROOT_INSTALL}/data/nginx-proxy/certs:/etc/nginx/certs:rw
+      - ${ROOT_INSTALL}/data/nginx-proxy/vhost.d:/etc/nginx/vhost.d:rw
       - acme:/etc/acme.sh
     networks: 
       - srv
