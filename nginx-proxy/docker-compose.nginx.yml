@@ -7,6 +7,8 @@ services:
     ports:
       - 80:80
       - 443:443 
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true      
     environment:
       - DEFAULT_HOST=${HOST_WWW}.${DOMAIN}
       - DHPARAM_GENERATION=${LETSENCRYPT_GENERATE}
