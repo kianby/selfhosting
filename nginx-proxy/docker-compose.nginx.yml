@@ -14,11 +14,12 @@ services:
       - srv             
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - conf:/etc/nginx/conf.d
-      - dhparam:/etc/nginx/dhparam:rw
-      - html:/usr/share/nginx/html
+      - ${ROOT_INSTALL}/data/nginx-proxy/conf.d:/etc/nginx/conf.d
+      - ${ROOT_INSTALL}/data/nginx-proxy/vhost.d:/etc/nginx/vhost.d
+      - ${ROOT_INSTALL}/data/nginx-proxy/dhparam:/etc/nginx/dhparam
+      - ${ROOT_INSTALL}/data/nginx-proxy/html:/usr/share/nginx/html
       - ${ROOT_INSTALL}/data/nginx-proxy/certs:/etc/nginx/certs:ro
-      - ${ROOT_INSTALL}/data/nginx-proxy/vhost.d:/etc/nginx/vhost.d:ro
+      - ${ROOT_INSTALL}/data/nginx-proxy/vhost.d:/etc/nginx/vhost.d
       - ${ROOT_INSTALL}/data/nginx-proxy/htpasswd:/etc/nginx/htpasswd:ro
 
   acme-companion:
@@ -26,12 +27,13 @@ services:
     container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=${LETSENCRYPT_EMAIL}
-    volumes_from:
-      - nginx-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${ROOT_INSTALL}/data/nginx-proxy/conf.d:/etc/nginx/conf.d
+      - ${ROOT_INSTALL}/data/nginx-proxy/vhost.d:/etc/nginx/vhost.d
+      - ${ROOT_INSTALL}/data/nginx-proxy/html:/usr/share/nginx/html
       - ${ROOT_INSTALL}/data/nginx-proxy/certs:/etc/nginx/certs:rw
-      - acme:/etc/acme.sh
+      - ${ROOT_INSTALL}/data/nginx-proxy/acme.sh:/etc/acme.sh
     networks: 
       - srv
       
