@@ -14,6 +14,7 @@ services:
       - srv             
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - conf:/etc/nginx/conf.d
       - dhparam:/etc/nginx/dhparam:rw
       - html:/usr/share/nginx/html
       - ${ROOT_INSTALL}/data/nginx-proxy/certs:/etc/nginx/certs:ro
@@ -30,14 +31,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${ROOT_INSTALL}/data/nginx-proxy/certs:/etc/nginx/certs:rw
-      - ${ROOT_INSTALL}/data/nginx-proxy/vhost.d:/etc/nginx/vhost.d:rw
-      - html:/usr/share/nginx/html
       - acme:/etc/acme.sh
     networks: 
       - srv
       
 volumes:
-  html:
+  conf:
   dhparam:
+  html: 
   certs:
   acme:
