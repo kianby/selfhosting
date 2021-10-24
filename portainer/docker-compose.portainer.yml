@@ -14,8 +14,9 @@ services:
     expose:
       - 9000
     environment:
+      - VIRTUAL_PORT=9000    
       - VIRTUAL_HOST=${HOST_PORTAINER}.${DOMAIN}
-      - VIRTUAL_PORT=9000             
+      - LETSENCRYPT_HOST=${HOST_PORTAINER}.${DOMAIN}
 
 volumes:
   portainer_data:

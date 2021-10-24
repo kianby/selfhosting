@@ -33,8 +33,9 @@ services:
     expose:
       - 80
     environment:
+      - HTTPS_METHOD=nohttps
       - VIRTUAL_HOST=${HOST_DELUGE_DOWNLOAD}.${DOMAIN}
-      - HTTPS_METHOD=nohttps         
+      - LETSENCRYPT_HOST=${HOST_DELUGE_DOWNLOAD}.${DOMAIN}
     
 volumes:
   deluge_config:

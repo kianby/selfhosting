@@ -12,8 +12,9 @@ services:
     expose:
       - 8888
     environment:
+      - VIRTUAL_PORT=8888     
       - VIRTUAL_HOST=${HOST_SELFOSS}.${DOMAIN}
-      - VIRTUAL_PORT=8888      
+      - LETSENCRYPT_HOST=${HOST_SELFOSS}.${DOMAIN}
 
 volumes: 
   selfoss_data:      

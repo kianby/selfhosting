@@ -15,4 +15,5 @@ services:
     networks:
       - srv
     environment:
-      - VIRTUAL_HOST=${HOST_DOKUWIKI}.${DOMAIN}    
+      - VIRTUAL_HOST=${HOST_DOKUWIKI}.${DOMAIN}
+      - LETSENCRYPT_HOST=${HOST_DOKUWIKI}.${DOMAIN}

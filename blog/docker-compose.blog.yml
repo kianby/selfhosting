@@ -22,4 +22,5 @@ services:
     expose:
       - 80
     environment:
-      - VIRTUAL_HOST=${HOST_BLOG}.${DOMAIN}      
+      - VIRTUAL_HOST=${HOST_BLOG}.${DOMAIN}
+      - LETSENCRYPT_HOST=${HOST_BLOG}.${DOMAIN}

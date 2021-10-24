@@ -16,6 +16,7 @@ services:
       - SYMFONY__ENV__DOMAIN_NAME="https://${HOST_WALLABAG}.${DOMAIN}"
       - SYMFONY__ENV__FOSUSER_REGISTRATION=false    
       - VIRTUAL_HOST=${HOST_WALLABAG}.${DOMAIN}
+      - LETSENCRYPT_HOST=${HOST_WALLABAG}.${DOMAIN}
 
 volumes:
   wallabag_data: 

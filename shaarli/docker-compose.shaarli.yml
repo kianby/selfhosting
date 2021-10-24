@@ -14,6 +14,7 @@ services:
       - 80
     environment:
       - VIRTUAL_HOST=${HOST_SHAARLI}.${DOMAIN}     
+      - LETSENCRYPT_HOST=${HOST_SHAARLI}.${DOMAIN}
 
 volumes:
   shaarli-data:
