@@ -11,4 +11,5 @@ services:
       - 80
     environment:
       - VIRTUAL_HOST=${DOMAIN},${HOST_WWW}.${DOMAIN}
+      - LETSENCRYPT_HOST=${DOMAIN},${HOST_WWW}.${DOMAIN}
 
