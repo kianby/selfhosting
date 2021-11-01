@@ -5,8 +5,6 @@ services:
     container_name: pigallery2
     environment:
       NODE_ENV: production
-      VIRTUAL_HOST: ${HOST_PIGALLERY}.${DOMAIN}
-      LETSENCRYPT_HOST: ${HOST_PIGALLERY}.${DOMAIN}        
     image: bpatrik/pigallery2:1.9.0-alpine
     networks:
       - srv    
@@ -26,7 +24,13 @@ services:
     cap_add:
       - SYS_ADMIN
     healthcheck:
-      disable: true
+      disable: true    
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
+      - traefik.http.routers.pigallery_config.entrypoints=websecure
+      - traefik.http.routers.pigallery_config.tls=true
+      - traefik.http.services.pigallery_config.loadbalancer.server.port=80
 
 volumes:
   pigallerydb_data:

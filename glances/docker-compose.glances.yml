@@ -6,14 +6,21 @@ services:
     image: nicolargo/glances:3.2.3.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - GLANCES_OPT=-w
     pid: host
     networks:
       - srv
     expose:
       - 61208
-    environment:
-      - GLANCES_OPT=-w 
-      - VIRTUAL_PORT=61208
-      - VIRTUAL_HOST=${HOST_GLANCES}.${DOMAIN}
-      - LETSENCRYPT_HOST=${HOST_GLANCES}.${DOMAIN}      
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.glances.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_GLANCES}`)
+      - traefik.http.routers.glances.entrypoints=websecure
+      - traefik.http.routers.glances.tls=true
+      - traefik.http.services.glances.loadbalancer.server.port=61208
+      - traefik.http.routers.glances.middlewares=glancesRedir,glancesPStrip
+      - traefik.http.middlewares.glancesPStrip.stripprefix.prefixes=${PATH_GLANCES}
+      - traefik.http.middlewares.glancesRedir.redirectregex.regex=^(.*)${PATH_GLANCES}$$
+      - traefik.http.middlewares.glancesRedir.redirectregex.replacement=$${1}${PATH_GLANCES}/      
 

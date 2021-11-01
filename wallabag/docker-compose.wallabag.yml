@@ -14,9 +14,13 @@ services:
     - wallabag_images:/var/www/wallabag/web/assets/images:rw
     environment:
       - SYMFONY__ENV__DOMAIN_NAME="https://${HOST_WALLABAG}.${DOMAIN}"
-      - SYMFONY__ENV__FOSUSER_REGISTRATION=false    
-      - VIRTUAL_HOST=${HOST_WALLABAG}.${DOMAIN}
-      - LETSENCRYPT_HOST=${HOST_WALLABAG}.${DOMAIN}
+      - SYMFONY__ENV__FOSUSER_REGISTRATION=false
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wallabag.rule=Host(`${HOST_WALLABAG}.${DOMAIN}`)
+      - traefik.http.routers.wallabag.entrypoints=websecure
+      - traefik.http.routers.wallabag.tls=true
+      - traefik.http.services.wallabag.loadbalancer.server.port=80
 
 volumes:
   wallabag_data: 

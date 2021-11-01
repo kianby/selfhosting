@@ -12,11 +12,17 @@ services:
       - srv
     restart: unless-stopped
     expose:
-      - 9000
-    environment:
-      - VIRTUAL_PORT=9000    
-      - VIRTUAL_HOST=${HOST_PORTAINER}.${DOMAIN}
-      - LETSENCRYPT_HOST=${HOST_PORTAINER}.${DOMAIN}
+      - 9000    
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.portainer.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_PORTAINER}`)   
+      - traefik.http.routers.portainer.entrypoints=websecure
+      - traefik.http.routers.portainer.tls=true
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
+      - traefik.http.routers.portainer.middlewares=portainerRedir,portainerPStrip
+      - traefik.http.middlewares.portainerPStrip.stripprefix.prefixes=${PATH_PORTAINER}
+      - traefik.http.middlewares.portainerRedir.redirectregex.regex=^(.*)${PATH_PORTAINER}$$
+      - traefik.http.middlewares.portainerRedir.redirectregex.replacement=$${1}${PATH_PORTAINER}/
 
 volumes:
   portainer_data:
