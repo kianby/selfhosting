@@ -16,7 +16,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.glances.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_GLANCES}`)
-      - traefik.http.routers.glances.entrypoints=websecure
+      - traefik.http.routers.glances.entrypoints=https
       - traefik.http.routers.glances.tls=true
       - traefik.http.services.glances.loadbalancer.server.port=61208
       - traefik.http.routers.glances.middlewares=glancesRedir,glancesPStrip

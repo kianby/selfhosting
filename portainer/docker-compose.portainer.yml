@@ -16,7 +16,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.portainer.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_PORTAINER}`)   
-      - traefik.http.routers.portainer.entrypoints=websecure
+      - traefik.http.routers.portainer.entrypoints=https
       - traefik.http.routers.portainer.tls=true
       - traefik.http.services.portainer.loadbalancer.server.port=9000
       - traefik.http.routers.portainer.middlewares=portainerRedir,portainerPStrip

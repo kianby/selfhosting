@@ -28,7 +28,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
-      - traefik.http.routers.pigallery_config.entrypoints=websecure
+      - traefik.http.routers.pigallery_config.entrypoints=https
       - traefik.http.routers.pigallery_config.tls=true
       - traefik.http.services.pigallery_config.loadbalancer.server.port=80
 

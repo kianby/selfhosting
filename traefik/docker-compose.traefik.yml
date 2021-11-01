@@ -8,8 +8,8 @@ services:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false      
       - --api=true
-      - --entrypoints.web.address=:80      
-      - --entrypoints.websecure.address=:443
+      - --entrypoints.http.address=:80      
+      - --entrypoints.https.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
       - --certificatesresolvers.letsencrypt.acme.storage=/acme.json
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
@@ -23,8 +23,8 @@ services:
     labels: 
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
-      - traefik.http.routers.api.entrypoints=web
-      - traefik.http.routers.api.entrypoints=websecure
+      - traefik.http.routers.api.entrypoints=http
+      - traefik.http.routers.api.entrypoints=https
       - traefik.http.routers.api.service=api@internal   
       - traefik.http.routers.api.middlewares=auth
       - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}
@@ -34,7 +34,7 @@ services:
       - traefik.http.routers.api.tls.domains[0].sans=*.${DOMAIN}
       # global redirect to https
       - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
-      - traefik.http.routers.http-catchall.entrypoints=web
+      - traefik.http.routers.http-catchall.entrypoints=http
       - traefik.http.routers.http-catchall.middlewares=redirect-to-https
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https

@@ -27,7 +27,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.netdata.rule=Host(`${HOST_NETDATA}.${DOMAIN}`)
-      - traefik.http.routers.netdata.entrypoints=websecure
+      - traefik.http.routers.netdata.entrypoints=https
       - traefik.http.routers.netdata.tls=true
       - traefik.http.routers.netdata.middlewares=auth
       - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH} 

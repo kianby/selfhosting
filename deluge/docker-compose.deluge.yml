@@ -21,7 +21,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.deluge.rule=Host(`${HOST_WWW}.${DOMAIN}`) && PathPrefix(`${PATH_DELUGE}`) 
-      - traefik.http.routers.deluge.entrypoints=websecure
+      - traefik.http.routers.deluge.entrypoints=https
       - traefik.http.routers.deluge.tls=true
       - traefik.http.services.deluge.loadbalancer.server.port=8112
       - traefik.http.routers.deluge.middlewares=delugeHeader,sameOriginHeader,delugeRedir,delugePStrip

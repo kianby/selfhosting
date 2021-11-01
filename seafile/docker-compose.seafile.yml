@@ -51,7 +51,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.seafile.rule=Host(`${HOST_SEAFILE}.${DOMAIN}`)
-      - traefik.http.routers.seafile.entrypoints=websecure
+      - traefik.http.routers.seafile.entrypoints=https
       - traefik.http.routers.seafile.tls=true
       - traefik.http.services.seafile.loadbalancer.server.port=80
 

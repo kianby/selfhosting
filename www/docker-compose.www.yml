@@ -12,6 +12,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.www.rule=Host(`${HOST_WWW}.${DOMAIN}`) 
-      - traefik.http.routers.www.entrypoints=websecure
+      - traefik.http.routers.www.entrypoints=https
       - traefik.http.routers.www.tls=true
       - traefik.http.services.www.loadbalancer.server.port=80

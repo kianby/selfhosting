@@ -17,7 +17,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.dokuwiki.rule=Host(`${HOST_DOKUWIKI}.${DOMAIN}`)
-      - traefik.http.routers.dokuwiki.entrypoints=websecure
+      - traefik.http.routers.dokuwiki.entrypoints=https
       - traefik.http.routers.dokuwiki.tls=true
       - traefik.http.services.dokuwiki.loadbalancer.server.port=80
 

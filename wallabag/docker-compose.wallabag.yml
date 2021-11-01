@@ -18,7 +18,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.wallabag.rule=Host(`${HOST_WALLABAG}.${DOMAIN}`)
-      - traefik.http.routers.wallabag.entrypoints=websecure
+      - traefik.http.routers.wallabag.entrypoints=https
       - traefik.http.routers.wallabag.tls=true
       - traefik.http.services.wallabag.loadbalancer.server.port=80
 

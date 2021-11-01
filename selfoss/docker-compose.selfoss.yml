@@ -14,7 +14,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.selfoss.rule=Host(`${HOST_SELFOSS}.${DOMAIN}`)
-      - traefik.http.routers.selfoss.entrypoints=websecure
+      - traefik.http.routers.selfoss.entrypoints=https
       - traefik.http.routers.selfoss.tls=true
       - traefik.http.services.selfoss.loadbalancer.server.port=8888       
 

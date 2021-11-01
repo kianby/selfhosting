@@ -15,7 +15,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.shaarli.rule=Host(`${HOST_SHAARLI}.${DOMAIN}`)
-      - traefik.http.routers.shaarli.entrypoints=websecure
+      - traefik.http.routers.shaarli.entrypoints=https
       - traefik.http.routers.shaarli.tls=true
       - traefik.http.services.shaarli.loadbalancer.server.port=80       
 
