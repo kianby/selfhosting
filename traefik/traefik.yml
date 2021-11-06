@@ -16,5 +16,22 @@ providers:
   docker:
     endpoint: unix:///var/run/docker.sock
     watch: true
-    exposedByDefault: true
+    exposedByDefault: false
     defaultRule: "HostRegexp(`{{ index .Labels \"com.docker.compose.service\"}}.traefik.me`,`{{ index .Labels \"com.docker.compose.service\"}}-{dashed-ip:.*}.traefik.me`)"
+
+http:
+  # global redirect to https
+  routers:
+    http-catchall:
+      rule: "hostregexp(`{host:.+}`)"
+      entrypoints: 
+        - http
+      middlewares: 
+        - redirect-to-https
+
+  # middleware redirect
+  middlewares:
+    redirect-to-https:
+      redirectscheme:
+        scheme: https
+        permanent: true

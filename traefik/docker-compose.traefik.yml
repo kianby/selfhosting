@@ -3,11 +3,11 @@ version: '3'
 services:
   traefik:
     container_name: traefik
-    image: traefik:v2.2.1
+    image: traefik:v2.5.3
     command:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false      
-      - --api=true
+      - --api.dashboard=false
       - --entrypoints.http.address=:80      
       - --entrypoints.https.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
@@ -21,13 +21,13 @@ services:
     environment:
       - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
-      - traefik.enable=true
-      - traefik.http.routers.api.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
-      - traefik.http.routers.api.entrypoints=http
-      - traefik.http.routers.api.entrypoints=https
-      - traefik.http.routers.api.service=api@internal   
-      - traefik.http.routers.api.middlewares=auth
-      - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}
+      #- traefik.enable=true
+      # - traefik.http.routers.api.rule=Host(`${HOST_TRAEFIK}.${DOMAIN}`)
+      # - traefik.http.routers.api.entrypoints=http
+      # - traefik.http.routers.api.entrypoints=https
+      # - traefik.http.routers.api.service=api@internal   
+      # - traefik.http.routers.api.middlewares=auth
+      # - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}
       # request widlcard certificate
       - traefik.http.routers.api.tls.certresolver=letsencrypt
       - traefik.http.routers.api.tls.domains[0].main=${DOMAIN}
@@ -42,8 +42,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    expose:
-      - 8080
     networks:
       - srv
     restart: unless-stopped

@@ -3,12 +3,15 @@ version: '3'
 services:
   traefik:
     container_name: traefik
-    image: traefik:v2.2.1   
+    image: traefik:v2.5.3   
     ports:
       - 80:80
       - 443:443
+      - 8080:8080
     expose:
       - 8080
+    labels: 
+      - traefik.enable=true      
     networks:
       - srv
     restart: unless-stopped
