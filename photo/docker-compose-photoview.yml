@@ -1,0 +1,69 @@
+version: "3"
+
+services:
+  photoview-db:
+    container_name: photoview-db
+    image: mariadb:10.5
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=photoview
+      - MYSQL_USER=photoview
+      - MYSQL_PASSWORD=photosecret
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    volumes:
+      - photoview_db_data:/var/lib/mysql
+    networks:
+      - srv 
+
+  photoview:
+    container_name: photoview
+    image: viktorstrate/photoview:2
+    restart: unless-stopped
+    expose:
+      - 80
+    depends_on:
+      - photoview-db
+    networks:
+      - srv 
+    environment:
+      - PHOTOVIEW_DATABASE_DRIVER=mysql
+      - PHOTOVIEW_MYSQL_URL=photoview:photosecret@tcp(photoview-db)/photoview
+      - PHOTOVIEW_LISTEN_IP=photoview
+      - PHOTOVIEW_LISTEN_PORT=80
+      - PHOTOVIEW_MEDIA_CACHE=/app/cache
+      
+      # Optional: If you are using Samba/CIFS-Share and experience problems with "directory not found"
+      # Enable the following Godebug
+      # - GODEBUG=asyncpreemptoff=1
+      
+      
+      # Optional: To enable map related features, you need to create a mapbox token.
+      # A token can be generated for free here https://account.mapbox.com/access-tokens/
+      # It's a good idea to limit the scope of the token to your own domain, to prevent others from using it.
+      - MAPBOX_TOKEN=${MAPBOX_TOKEN}
+
+    volumes:
+      - photoview_api_cache:/app/cache
+
+      # Change This: to the directory where your photos are located on your server.
+      # If the photos are located at `/home/user/photos`, then change this value
+      # to the following: `/home/user/photos:/photos:ro`.
+      # You can mount multiple paths, if your photos are spread across multiple directories.
+      #- ./photos_path:/photos:ro
+      - type: bind
+        source: ${ROOT_INSTALL}/data/seafile-fuse
+        target: /photos        
+        bind:
+          propagation: rslave
+    privileged: true
+    cap_add:
+      - SYS_ADMIN 
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PHOTOVIEW}.${DOMAIN}`)
+      - traefik.http.routers.pigallery_config.entrypoints=https
+      - traefik.http.routers.pigallery_config.tls=true             
+
+volumes:
+  photoview_db_data:
+  photoview_api_cache:
