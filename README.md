@@ -1,10 +1,8 @@
 # Hosting
 
-My server installation recipes.
+My server installation recipes  (Inspired from https://github.com/tomMoulard/make-my-server)
 
-(Inspired from https://github.com/tomMoulard/make-my-server)
-
-Override docker-compose command to manage separate docker-compose.yml files (non executable YAML files are ignored).
+Bash function to override docker-compose command and manage multiple docker-compose.yml files (non executable YAML files are ignored).
 
 ```bash
 export DOCKER_COMPOSE_BIN='/usr/bin/docker compose'
