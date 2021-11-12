@@ -17,8 +17,8 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ${ROOT_INSTALL}/hosting/traefik/traefik.yml:/etc/traefik/traefik.yml
-      - ${ROOT_INSTALL}/hosting/traefik/tls.yml:/etc/traefik/tls.yml
+      - ${ROOT_INSTALL}/selfhosting/traefik/traefik.yml:/etc/traefik/traefik.yml
+      - ${ROOT_INSTALL}/selfhosting/traefik/tls.yml:/etc/traefik/tls.yml
       - certs:/etc/ssl/traefik
 
   reverse-proxy-https-helper:

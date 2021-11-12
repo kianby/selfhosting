@@ -39,7 +39,7 @@ services:
     expose:
       - 80
     volumes:
-      - ${ROOT_INSTALL}/hosting/seafile/start.py:/scripts/start.py
+      - ${ROOT_INSTALL}/selfhosting/seafile/start.py:/scripts/start.py
       - seafile_data:/shared:rw
       - type: bind
         source: ${ROOT_INSTALL}/data/seafile-fuse
