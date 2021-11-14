@@ -21,6 +21,11 @@ services:
     environment:
       - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
+      - traefik.http.routers.api.entrypoints=http
+      - traefik.http.routers.api.entrypoints=https
+      # middleware auth
+      - traefik.http.routers.api.middlewares=auth
+      - traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}          
       # request widlcard certificate
       - traefik.http.routers.api.tls.certresolver=letsencrypt
       - traefik.http.routers.api.tls.domains[0].main=${DOMAIN}
