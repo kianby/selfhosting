@@ -2,7 +2,7 @@ version: '3'
 
 services:
   traefik:
-    container_name: traefik
+    container_name: traefik-local
     image: traefik:v2.5.3   
     ports:
       - 80:80
