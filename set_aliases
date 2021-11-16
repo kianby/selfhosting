@@ -7,6 +7,6 @@ docker-compose ()
     $DOCKER_COMPOSE_BIN $(find -name 'docker-compose*.yml' -type f -perm -u+x -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
 }
 
-#alias up='docker-compose --env-file /srv/hosting/.env up -d'
-#alias down='docker-compose --env-file /srv/hosting/.env down'
+#alias up='docker-compose --env-file /srv/selfhosting/.env up -d'
+#alias down='docker-compose --env-file /srv/selfhosting/.env down'
 
