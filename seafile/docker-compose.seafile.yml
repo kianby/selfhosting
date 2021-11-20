@@ -5,7 +5,7 @@ services:
     container_name: seafile-db
     environment:
       MYSQL_LOG_CONSOLE: "true"
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${SEAFILE_DB_ROOT_PASSWORD}
     image: mariadb:10.1
     networks:
       - srv
