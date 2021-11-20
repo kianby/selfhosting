@@ -21,6 +21,7 @@ services:
     environment:
       - GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
+      - traefik.enable=true
       - traefik.http.routers.api.entrypoints=http
       - traefik.http.routers.api.entrypoints=https
       - traefik.http.routers.api.service=api@internal
