@@ -10,3 +10,14 @@ docker-compose ()
 #alias up='docker-compose --env-file /srv/selfhosting/.env up -d'
 #alias down='docker-compose --env-file /srv/selfhosting/.env down'
 
+# disable unused services 
+chmod -x baikal/docker-compose.baikal.yml  
+chmod -x posteio/docker-compose.posteio.yml 
+chmod -x netdata/docker-compose.netdata.yml 
+chmod -x photo/docker-compose.pigallery.yml 
+
+# local testing
+chmod -x traefik/docker-compose.traefik.yml
+
+# live 
+chmod -x traefik/docker-compose.traefik-local.yml 
