@@ -6,7 +6,7 @@ services:
     image: shaarli/shaarli
     volumes:
       - shaarli-cache:/var/www/shaarli/cache
-      - ${ROOT_INSTALL}/selfhosting/data/shaarli:/var/www/shaarli/data      
+      - ${ROOT_INSTALL}/data/shaarli:/var/www/shaarli/data      
     networks:
       - srv
     restart: unless-stopped
