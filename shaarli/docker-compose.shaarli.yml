@@ -6,7 +6,7 @@ services:
     image: shaarli/shaarli
     volumes:
       - shaarli-cache:/var/www/shaarli/cache
-      - shaarli-data:/var/www/shaarli/data      
+      - ${ROOT_INSTALL}/selfhosting/data/shaarli:/var/www/shaarli/data      
     networks:
       - srv
     restart: unless-stopped
@@ -19,5 +19,4 @@ services:
       - traefik.http.routers.shaarli.tls=true           
 
 volumes:
-  shaarli-data:
   shaarli-cache:      
