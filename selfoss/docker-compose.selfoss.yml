@@ -16,7 +16,11 @@ services:
       - traefik.http.routers.selfoss.rule=Host(`${HOST_SELFOSS}.${DOMAIN}`)
       - traefik.http.routers.selfoss.entrypoints=https
       - traefik.http.routers.selfoss.tls=true
-      - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=64000000
+      - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=134217728
+      - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=2000000
+      - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=134217728
+      - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=2000000
+
 
 volumes: 
   selfoss_data:      
