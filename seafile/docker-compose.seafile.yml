@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${SEAFILE_DB_ROOT_PASSWORD}
     image: mariadb:10.1
     networks:
-      - srv
+      - seafile-backend
     volumes:
       - seafile_db:/var/lib/mysql:rw
     restart: unless-stopped
@@ -17,7 +17,7 @@ services:
     entrypoint: memcached -m 256
     image: memcached:1.5.6
     networks:
-      - srv
+      - seafile-backend
     restart: unless-stopped
   seafile:
     container_name: seafile
@@ -34,7 +34,8 @@ services:
       TIME_ZONE: ${TZ}
     image: seafileltd/seafile-mc:latest
     networks:
-      - srv
+      - seafile-backend
+      - seafile-frontend
     restart: unless-stopped
     expose:
       - 80
@@ -53,7 +54,8 @@ services:
       - traefik.enable=true
       - traefik.http.routers.seafile.rule=Host(`${HOST_SEAFILE}.${DOMAIN}`)
       - traefik.http.routers.seafile.entrypoints=https
-      - traefik.http.routers.seafile.tls=true      
+      - traefik.http.routers.seafile.tls=true
+      - traefik.docker.network=seafile-frontend
 
 volumes:
   seafile_db:

@@ -5,7 +5,7 @@ services:
     container_name: baikal
     image: ckulka/baikal:nginx
     networks:
-      - srv    
+      - baikal-frontend    
     expose:
       - 80
     restart: unless-stopped
@@ -17,6 +17,7 @@ services:
       - traefik.http.routers.baikal.rule=Host(`${HOST_BAIKAL}.${DOMAIN}`)
       - traefik.http.routers.baikal.entrypoints=https
       - traefik.http.routers.baikal.tls=true
+      - traefik.docker.network=baikal-frontend
 
 volumes:
   baikal_config: 

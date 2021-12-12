@@ -27,9 +27,10 @@ services:
       disable: true    
     labels:
       - traefik.enable=true
-      - traefik.http.routers.pigallery_config.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
-      - traefik.http.routers.pigallery_config.entrypoints=https
-      - traefik.http.routers.pigallery_config.tls=true      
+      - traefik.http.routers.photo.rule=Host(`${HOST_PIGALLERY}.${DOMAIN}`)
+      - traefik.http.routers.photo.entrypoints=https
+      - traefik.http.routers.photo.tls=true
+      - traefik.docker.network=photo-frontend
 
 volumes:
   pigallerydb_data:

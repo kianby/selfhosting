@@ -6,7 +6,7 @@ services:
     image: kianby/www-madyanne
     restart: unless-stopped
     networks:
-      - srv
+      - wwww-frontend
     expose:
       - 80
     labels:
@@ -14,4 +14,5 @@ services:
       - traefik.http.routers.www.rule=Host(`${HOST_WWW}.${DOMAIN}`) 
       - traefik.http.routers.www.entrypoints=https
       - traefik.http.routers.www.tls=true
+      - traefik.docker.network=wwww-frontend
 
