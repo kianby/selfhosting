@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export DOCKER_COMPOSE_BIN='/usr/local/bin/docker-compose'
+docker-compose ()
+{
+    $DOCKER_COMPOSE_BIN $(find -name 'docker-compose*.yml' -type f -perm -u+x -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
+}
+
+# ===========================================================================
+#  Configure 
+
+# disable unused services 
+chmod -x baikal/docker-compose.baikal.yml  
+chmod -x posteio/docker-compose.posteio.yml 
+chmod -x netdata/docker-compose.netdata.yml 
+chmod -x photo/docker-compose.pigallery.yml 
+
+# A/ local testing
+chmod -x traefik/docker-compose.traefik.yml
+
+# B/ live 
+#chmod -x traefik/docker-compose.traefik-local.yml 
