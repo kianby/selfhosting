@@ -1,10 +1,32 @@
 #!/bin/bash
 
-# disable unused services 
-chmod -x baikal/docker-compose.baikal.yml  
-chmod -x posteio/docker-compose.posteio.yml 
-chmod -x netdata/docker-compose.netdata.yml 
-chmod -x photo/docker-compose.pigallery.yml 
+if [[ $# -eq 0 ]] ; then
+    echo 'Nothing to do'
+    exit 0
+fi
 
-# live server
-chmod -x traefik/docker-compose.traefik-local.yml
+case "$1" in
+    "on")
+        # disable unused services 
+        chmod -x baikal/docker-compose.baikal.yml  
+        chmod -x posteio/docker-compose.posteio.yml 
+        chmod -x netdata/docker-compose.netdata.yml 
+        chmod -x photo/docker-compose.pigallery.yml
+        # live server
+        chmod -x traefik/docker-compose.traefik-local.yml
+        exit 0;;
+    "off")
+        # restore state 
+        chmod +x baikal/docker-compose.baikal.yml  
+        chmod +x posteio/docker-compose.posteio.yml 
+        chmod +x netdata/docker-compose.netdata.yml 
+        chmod +x photo/docker-compose.pigallery.yml
+        chmod +x traefik/docker-compose.traefik-local.yml
+        exit 0;;
+    *)
+        echo "Unknown command: on/off are valid values"
+        exit 1;;
+esac
+
+
+
