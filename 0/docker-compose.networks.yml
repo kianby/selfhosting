@@ -28,7 +28,9 @@ networks:
   posteio-frontend:
     name: portainer-frontend
   seafile-frontend:
-    name: seafile-frontend    
+    name: seafile-frontend
+  seafile-backend:
+    name: seafile-backend     
   selfoss-frontend:
     name: selfoss-frontend    
   shaarli-frontend:
