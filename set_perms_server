@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# disable unused services 
+chmod -x baikal/docker-compose.baikal.yml  
+chmod -x posteio/docker-compose.posteio.yml 
+chmod -x netdata/docker-compose.netdata.yml 
+chmod -x photo/docker-compose.pigallery.yml 
+
+# live server
+chmod -x traefik/docker-compose.traefik-local.yml
