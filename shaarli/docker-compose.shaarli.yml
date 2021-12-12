@@ -8,7 +8,7 @@ services:
       - shaarli-cache:/var/www/shaarli/cache
       - ${ROOT_INSTALL}/data/shaarli:/var/www/shaarli/data      
     networks:
-      - srv
+      - shaarli-frontend
     restart: unless-stopped
     expose:
       - 80
@@ -16,7 +16,8 @@ services:
       - traefik.enable=true
       - traefik.http.routers.shaarli.rule=Host(`${HOST_SHAARLI}.${DOMAIN}`)
       - traefik.http.routers.shaarli.entrypoints=https
-      - traefik.http.routers.shaarli.tls=true           
+      - traefik.http.routers.shaarli.tls=true
+      - traefik.docker.network=shaarli-frontend           
 
 volumes:
   shaarli-cache:      

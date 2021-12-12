@@ -6,7 +6,7 @@ services:
     image: linuxserver/deluge
     restart: unless-stopped
     networks:
-      - srv
+      - deluge-frontend
     environment:
       DELUGE_LOGLEVEL: info
       TZ: ${TZ}    
@@ -29,14 +29,15 @@ services:
       - traefik.http.middlewares.sameOriginHeader.headers.customrequestheaders.X-Frame-Options=SAMEORIGIN
       - traefik.http.middlewares.delugePStrip.stripprefix.prefixes=${PATH_DELUGE}
       - traefik.http.middlewares.delugeRedir.redirectregex.regex=^(.*)${PATH_DELUGE}$$
-      - traefik.http.middlewares.delugeRedir.redirectregex.replacement=$${1}${PATH_DELUGE}/        
+      - traefik.http.middlewares.delugeRedir.redirectregex.replacement=$${1}${PATH_DELUGE}/
+      - traefik.docker.network=deluge-frontend
 
   torrent:
     container_name: torrent
     image: kianby/nginx-streaming
     restart: unless-stopped
     networks:
-      - srv
+      - dmz
     volumes:
       - deluge_downloads:/downloads:ro
     expose:

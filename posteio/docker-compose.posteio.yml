@@ -21,7 +21,8 @@ services:
       - traefik.http.routers.posteio.rule=Host(`${HOST_MAIL}.${DOMAIN}`)
       - traefik.http.routers.posteio.entrypoints=https
       - traefik.http.routers.posteio.tls=true
+      - traefik.docker.network=posteio-frontend
     networks:
-      - srv
+      - posteio-frontend
     healthcheck:
       disable: true       

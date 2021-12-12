@@ -10,7 +10,7 @@ services:
       - GLANCES_OPT=-w
     pid: host
     networks:
-      - srv
+      - glances-frontend
     expose:
       - 61208
     labels:
@@ -21,5 +21,6 @@ services:
       - traefik.http.routers.glances.middlewares=glancesRedir,glancesPStrip
       - traefik.http.middlewares.glancesPStrip.stripprefix.prefixes=${PATH_GLANCES}
       - traefik.http.middlewares.glancesRedir.redirectregex.regex=^(.*)${PATH_GLANCES}$$
-      - traefik.http.middlewares.glancesRedir.redirectregex.replacement=$${1}${PATH_GLANCES}/      
+      - traefik.http.middlewares.glancesRedir.redirectregex.replacement=$${1}${PATH_GLANCES}/
+      - traefik.docker.network=glances-frontend
 

@@ -7,7 +7,7 @@ services:
     volumes:
       - selfoss_data:/selfoss/data
     networks:
-      - srv
+      - selfoss-frontend
     restart: unless-stopped
     expose:
       - 8888
@@ -20,7 +20,7 @@ services:
       - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=2000000
       - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=134217728
       - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=2000000
-
+      - traefik.docker.network=selfoss-frontend
 
 volumes: 
   selfoss_data:      
