@@ -7,7 +7,7 @@ services:
       NODE_ENV: production
     image: bpatrik/pigallery2:1.9.0-alpine
     networks:
-      - srv    
+      - photo-frontend     
     expose:
       - 80
     restart: unless-stopped
