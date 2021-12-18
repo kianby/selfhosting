@@ -1,0 +1,61 @@
+nwdiag {
+  inet [shape = cloud];
+  inet -- router;
+
+  network dmz {
+    address = "10.254.x.x/24"  
+    router;
+    traefik [address = "10.254.x.1"];
+    nginx-streaming [address = "10.254.x.2"];
+  }
+
+  network baikal-frontend {
+    address = "10.10.x.0/24"
+    traefik [address = "10.254.x.1"];
+    baikal [address = "10.10.x.1"];
+  }
+
+  network blog-frontend {
+    address = "10.11.x.0/24"
+    traefik [address = "10.254.x.1"];
+    blog [address = "10.11.x.1"];
+  }
+
+  network blog-backend {
+    address = "10.21.x.0/24"    
+    blog [address = "10.21.x.1"];
+    stacosys [address = "10.21.x.2"];
+  }
+
+  network deluge-frontend {
+    address = "10.12.x.0/24"
+    traefik [address = "10.254.x.1"];
+    deluge [address = "10.12.x.1"];
+  }
+
+  network dokuwiki-frontend {
+    address = "10.13.x.0/24"
+    traefik [address = "10.254.x.1"];
+    dokuwiki [address = "10.13.x.1"];
+  }
+
+  network glances-frontend {
+    address = "10.14.x.0/24"
+    traefik [address = "10.254.x.1"];
+    glances [address = "10.14.x.1"];
+  }
+}
+
+
+//  netdata-frontend:
+//  netdata-backend:
+//  photo-frontend:    
+//  photo-backend:
+//  portainer-frontend
+//  posteio-frontend:
+//  seafile-frontend:
+//  seafile-backend:
+//  selfoss-frontend
+//  shaarli-frontend:
+//  wallabag-frontend:
+//  wwww-frontend:

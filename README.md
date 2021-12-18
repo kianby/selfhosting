@@ -11,3 +11,7 @@ docker-compose ()
     $DOCKER_COMPOSE_BIN $(find -name 'docker-compose*.yml' -type f -perm -u+x -printf '%p\t%d\n'  2>/dev/null | sort -n -k2 | cut -f 1 | awk '{print "-f "$0}') $@
 }
 ```  
+
+Schéma réseau :
+
+![schéma réseau](__doc__/nwdiag.png)
