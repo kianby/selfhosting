@@ -5,19 +5,19 @@ nwdiag {
   network dmz {
     address = "10.254.x.x/24"  
     router;
-    traefik [address = "10.254.x.1"];
-    nginx-streaming [address = "10.254.x.2"];
+    traefik [address = "10.254.x.254"];
+    nginx-streaming [address = "10.254.x.1"];
   }
 
   network baikal-frontend {
     address = "10.10.x.0/24"
-    traefik [address = "10.254.x.1"];
+    traefik [address = "10.10.x.254"];
     baikal [address = "10.10.x.1"];
   }
 
   network blog-frontend {
     address = "10.11.x.0/24"
-    traefik [address = "10.254.x.1"];
+    traefik [address = "10.11.x.254"];
     blog [address = "10.11.x.1"];
   }
 
@@ -29,26 +29,36 @@ nwdiag {
 
   network deluge-frontend {
     address = "10.12.x.0/24"
-    traefik [address = "10.254.x.1"];
+    traefik [address = "10.12.x.254"];
     deluge [address = "10.12.x.1"];
   }
 
   network dokuwiki-frontend {
     address = "10.13.x.0/24"
-    traefik [address = "10.254.x.1"];
+    traefik [address = "10.13.x.254"];
     dokuwiki [address = "10.13.x.1"];
   }
 
   network glances-frontend {
     address = "10.14.x.0/24"
-    traefik [address = "10.254.x.1"];
+    traefik [address = "10.14.x.254"];
     glances [address = "10.14.x.1"];
+  }
+
+  network netdata-frontend {
+    address = "10.15.x.0/24"
+    traefik [address = "10.15.x.254"];
+    netdata [address = "10.15.x.1"];
+  }
+
+  network netdata-backend {
+    address = "10.25.x.0/24"    
+    netdata [address = "10.25.x.1"];
+    docker-proxy [address = "10.25.x.2"];
   }
 }
 
 
-//  netdata-frontend:
-//  netdata-backend:
 //  photo-frontend:    
 //  photo-backend:
 //  portainer-frontend
