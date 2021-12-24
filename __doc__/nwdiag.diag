@@ -10,62 +10,111 @@ nwdiag {
   }
 
   network baikal-frontend {
-    address = "10.10.x.0/24"
-    traefik [address = "10.10.x.254"];
-    baikal [address = "10.10.x.1"];
+    address = "10.10.10.0/24"
+    traefik [address = "10.10.10.254"];
+    baikal [address = "10.10.10.1"];
   }
 
   network blog-frontend {
-    address = "10.11.x.0/24"
-    traefik [address = "10.11.x.254"];
-    blog [address = "10.11.x.1"];
+    address = "10.10.11.0/24"
+    traefik [address = "10.10.11.254"];
+    blog [address = "10.10.11.1"];
   }
 
   network blog-backend {
-    address = "10.21.x.0/24"    
-    blog [address = "10.21.x.1"];
-    stacosys [address = "10.21.x.2"];
+    address = "10.20.11.0/24"    
+    blog [address = "10.20.11.1"];
+    stacosys [address = "10.20.11.2"];
   }
 
   network deluge-frontend {
-    address = "10.12.x.0/24"
-    traefik [address = "10.12.x.254"];
-    deluge [address = "10.12.x.1"];
+    address = "10.10.12.0/24"
+    traefik [address = "10.10.12.254"];
+    deluge [address = "10.10.12.1"];
   }
 
   network dokuwiki-frontend {
-    address = "10.13.x.0/24"
-    traefik [address = "10.13.x.254"];
-    dokuwiki [address = "10.13.x.1"];
+    address = "10.10.13.0/24"
+    traefik [address = "10.10.13.254"];
+    dokuwiki [address = "10.10.13.1"];
   }
 
   network glances-frontend {
-    address = "10.14.x.0/24"
-    traefik [address = "10.14.x.254"];
-    glances [address = "10.14.x.1"];
+    address = "10.10.14.0/24"
+    traefik [address = "10.10.14.254"];
+    glances [address = "10.10.14.1"];
   }
 
   network netdata-frontend {
-    address = "10.15.x.0/24"
-    traefik [address = "10.15.x.254"];
-    netdata [address = "10.15.x.1"];
+    address = "10.10.15.0/24"
+    traefik [address = "10.10.15.254"];
+    netdata [address = "10.10.15.1"];
   }
 
   network netdata-backend {
-    address = "10.25.x.0/24"    
-    netdata [address = "10.25.x.1"];
-    docker-proxy [address = "10.25.x.2"];
+    address = "10.20.15.0/24"    
+    netdata [address = "10.20.15.1"];
+    docker-proxy [address = "10.20.15.2"];
+  }
+
+  network photo-frontend {
+    address = "10.10.16.0/24"  
+    traefik [address = "10.10.16.254"];  
+    photoview [address = "10.10.16.1"];
+  }
+
+  network photo-backend {
+    address = "10.20.16.0/24"
+    photoview [address = "10.20.16.1"];
+    photoview-db [address = "10.20.16.2"];
+  }
+
+  network portainer-frontend {
+    address = "10.10.17.0/24"
+    traefik [address = "10.10.17.254"];    
+    portainer [address = "10.10.17.1"];
+  }
+
+  network posteio-frontend {
+    address = "10.10.18.0/24"
+    traefik [address = "10.10.18.254"];    
+    posteio [address = "10.10.18.1"];
+  }
+
+  network seafile-frontend {
+    address = "10.10.19.0/24"
+    traefik [address = "10.10.19.254"];    
+    seafile [address = "10.10.19.1"];
+  }
+
+  network seafile-backend {
+    address = "10.20.19.0/24"
+    seafile [address = "10.20.19.1"];
+    seafile-db [address = "10.20.19.2"];
+    seafile-memcached [address = "10.20.19.3"];
+  }
+
+  network selfoss-frontend {
+    address = "10.10.20.0/24"
+    traefik [address = "10.10.20.254"];    
+    selfoss [address = "10.10.20.1"];
+  }
+
+  network shaarli-frontend {
+    address = "10.10.21.0/24"
+    traefik [address = "10.10.21.254"];    
+    shaarli [address = "10.10.21.1"];
+  }
+
+  network wallabag-frontend {
+    address = "10.10.22.0/24"
+    traefik [address = "10.10.22.254"];    
+    wallabag [address = "10.10.22.1"];
+  }
+
+  network www-frontend {
+    address = "10.10.23.0/24"
+    traefik [address = "10.10.23.254"];    
+    www [address = "10.10.23.1"];
   }
 }
-
-
-//  photo-frontend:    
-//  photo-backend:
-//  portainer-frontend
-//  posteio-frontend:
-//  seafile-frontend:
-//  seafile-backend:
-//  selfoss-frontend
-//  shaarli-frontend:
-//  wallabag-frontend:
-//  wwww-frontend:
