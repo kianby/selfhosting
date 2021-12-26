@@ -14,4 +14,4 @@ docker-compose ()
 
 ### Network diagram:
 
-![schéma réseau](__doc__/nwdiag.png)
+![network diag](__doc__/nwdiag.png)
