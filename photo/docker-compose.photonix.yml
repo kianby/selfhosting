@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: photonix-postgres
+    image: postgres:11.1-alpine
+    environment:
+      POSTGRES_DB: photonix
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    networks:
+      - photo-backend 
+
+  redis:
+    container_name: photonix-redis
+    image: redis:6.2.2
+    networks:
+      - photo-backend 
+
+  photonix:
+    container_name: photonix
+    image: photonixapp/photonix:latest
+    expose:
+      - 80      
+    environment:
+      ENV: prd
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: photonix
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      REDIS_HOST: redis
+      ALLOWED_HOSTS: '*'
+      # More configuration options here: https://photonix.org/docs/configuration/
+    volumes:
+#      - ./data/photos:/data/photos
+      - photonix_raw_photos:/data/raw-photos-processed
+      - photonix_cache:/data/cache
+      - photonix_models:/data/models
+      - type: bind
+        source: ${ROOT_INSTALL}/data/seafile-fuse
+        target: /data/photos
+        bind:
+          propagation: rslave
+    privileged: true
+    cap_add:
+      - SYS_ADMIN       
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - photo-backend 
+      - photo-frontend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.photo.rule=Host(`${HOST_PHOTONIX}.${DOMAIN}`)
+      - traefik.http.routers.photo.entrypoints=https
+      - traefik.http.routers.photo.tls=true
+      - traefik.docker.network=photo-frontend
+
+volumes:
+  photonix_raw_photos:
+  photonix_cache:
+  photonix_models: 

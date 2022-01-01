@@ -21,6 +21,7 @@ case "$1" in
         chmod -x posteio/docker-compose.posteio.yml 
         chmod -x netdata/docker-compose.netdata.yml 
         chmod -x photo/docker-compose.pigallery.yml 
+        chmod -x photo/docker-compose.photoview.yml 
         # local testing
         chmod -x traefik/docker-compose.traefik.yml
         exit 0;;
@@ -30,6 +31,7 @@ case "$1" in
         chmod +x posteio/docker-compose.posteio.yml 
         chmod +x netdata/docker-compose.netdata.yml 
         chmod +x photo/docker-compose.pigallery.yml         
+        chmod +x photo/docker-compose.photoview.yml         
         chmod +x traefik/docker-compose.traefik.yml
         exit 0;;
     *)
