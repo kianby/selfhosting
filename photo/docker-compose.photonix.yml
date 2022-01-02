@@ -39,7 +39,7 @@ services:
       - photonix_models:/data/models
       - type: bind
         source: ${ROOT_INSTALL}/data/seafile-fuse
-        target: /data/photos
+        target: /seahub
         bind:
           propagation: rslave
     privileged: true
