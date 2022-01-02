@@ -12,12 +12,13 @@ services:
       - 80
     restart: unless-stopped
     volumes:
+    #/app/data/images
     - pigallery_config:/app/data/config:rw
     - pigallerydb_data:/app/data/db:rw
     - pigallery_tmp:/app/data/tmp:rw
     - type: bind
       source: ${ROOT_INSTALL}/data/seafile-fuse
-      target: /app/data/images
+      target: /seahub
       bind:
         propagation: rslave
     privileged: true
