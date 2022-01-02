@@ -11,7 +11,7 @@ case "$1" in
         chmod -x baikal/docker-compose.baikal.yml  
         chmod -x posteio/docker-compose.posteio.yml 
         chmod -x netdata/docker-compose.netdata.yml 
-        chmod -x photo/docker-compose.pigallery.yml
+        chmod -x photo/docker-compose.photonix.yml
         chmod -x photo/docker-compose.photoview.yml        
         # live server
         chmod -x traefik/docker-compose.traefik-local.yml
@@ -21,7 +21,7 @@ case "$1" in
         chmod +x baikal/docker-compose.baikal.yml  
         chmod +x posteio/docker-compose.posteio.yml 
         chmod +x netdata/docker-compose.netdata.yml 
-        chmod +x photo/docker-compose.pigallery.yml
+        chmod +x photo/docker-compose.photonix.yml
         chmod +x photo/docker-compose.photoview.yml        
         chmod +x traefik/docker-compose.traefik-local.yml
         exit 0;;
