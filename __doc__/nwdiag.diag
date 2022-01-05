@@ -60,13 +60,7 @@ nwdiag {
   network photo-frontend {
     address = "10.10.16.0/24"  
     traefik [address = "10.10.16.254"];  
-    photoview [address = "10.10.16.1"];
-  }
-
-  network photo-backend {
-    address = "10.20.16.0/24"
-    photoview [address = "10.20.16.1"];
-    photoview-db [address = "10.20.16.2"];
+    pigallery2 [address = "10.10.16.1"];
   }
 
   network portainer-frontend {
