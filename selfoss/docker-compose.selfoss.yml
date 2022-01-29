@@ -6,6 +6,8 @@ services:
     image: hardware/selfoss
     volumes:
       - selfoss_data:/selfoss/data
+      - ${ROOT_INSTALL}/selfhosting/selfoss/cacert-2021-10-26.pem:/etc/ssl/cacerts
+      - ${ROOT_INSTALL}/selfhosting/selfoss/php7.ini:/etc/php7/php.ini
     networks:
       - selfoss-frontend
     restart: unless-stopped
@@ -21,6 +23,5 @@ services:
       - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=134217728
       - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=2000000
       - traefik.docker.network=selfoss-frontend
-
 volumes: 
   selfoss_data:      
