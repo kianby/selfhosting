@@ -12,10 +12,11 @@ services:
       - --entrypoints.https.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
       - --certificatesresolvers.letsencrypt.acme.storage=/acme.json
-      - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
-      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
-      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandiv5
-      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
+      - --certificatesresolvers.letsencrypt.acme.tlschallenge=true
+      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
+      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
+      #- --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandiv5
+      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
       # staging server
       #- --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     environment:
