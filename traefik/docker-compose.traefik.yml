@@ -4,6 +4,7 @@ services:
   traefik:
     container_name: traefik
     image: traefik:v2.5.3
+    profiles: ["production"]
     command:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false      

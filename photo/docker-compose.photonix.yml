@@ -3,7 +3,8 @@ version: '3'
 services:
   postgres:
     container_name: photonix-postgres
-    image: postgres:11.1-alpine
+    image: postgres:11.1-alpine    
+    profiles: ["disabled"]
     environment:
       POSTGRES_DB: photonix
       POSTGRES_PASSWORD: password
@@ -21,6 +22,7 @@ services:
   photonix:
     container_name: photonix
     image: photonixapp/photonix:latest
+    profiles: ["disabled"]
     expose:
       - 80      
     environment:

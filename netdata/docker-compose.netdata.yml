@@ -3,6 +3,7 @@ services:
   netdata:
     image: netdata/netdata
     container_name: netdata
+    profiles: ["disabled"]
     hostname: ${HOST_NETDATA}.${DOMAIN}
     expose:
       - 19999
@@ -38,6 +39,7 @@ services:
   docker-proxy:
     image: tecnativa/docker-socket-proxy
     container_name: docker-proxy
+    profiles: ["disabled"]
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:

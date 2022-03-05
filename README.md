@@ -12,6 +12,11 @@ docker-compose ()
 }
 ```  
 
+Compose files refer to [service profiles](https://docs.docker.com/compose/profiles/):
+- disabled: set for services I don't use
+- testing: enable SSL configuration relying on https://traefik.me for local testing
+- production: enable domain configuration on deployment server 
+
 ### Network diagram:
 
 ![network diag](__doc__/nwdiag.png)

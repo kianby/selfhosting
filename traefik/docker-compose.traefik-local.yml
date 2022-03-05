@@ -3,7 +3,8 @@ version: '3'
 services:
   traefik:
     container_name: traefik-local
-    image: traefik:v2.5.3   
+    image: traefik:v2.5.3
+    profiles: ["testing"]   
     ports:
       - 80:80
       - 443:443

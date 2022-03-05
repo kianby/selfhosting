@@ -4,6 +4,7 @@ services:
   poste-io:
     container_name: poste-io
     image: analogic/poste.io
+    profiles: ["disabled"]
     volumes:
       - ${ROOT_INSTALL}/data/poste.io:/data
     environment:
