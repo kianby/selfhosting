@@ -20,8 +20,8 @@ services:
       #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
       # staging server
       #- --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
-    environment:
-      - GANDIV5_API_KEY=${GANDIV5_API_KEY}
+    #environment:
+      #- GANDIV5_API_KEY=${GANDIV5_API_KEY}
     labels: 
       - traefik.enable=true
       - traefik.http.routers.api.entrypoints=http
