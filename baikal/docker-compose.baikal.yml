@@ -1,9 +1,10 @@
-version: '3'
+version: '3.8'
 
 services:
   baikal:
     container_name: baikal
     image: ckulka/baikal:nginx
+    profiles: ["disabled"]
     networks:
       - baikal-frontend    
     expose:
