@@ -16,6 +16,7 @@ services:
   redis:
     container_name: photonix-redis
     image: redis:6.2.2
+    profiles: ["disabled"]
     networks:
       - photo-backend 
 
