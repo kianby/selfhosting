@@ -38,6 +38,7 @@ services:
 
   reverse-proxy-https-helper:
     image: alpine
+    profiles: ["testing"]   
     command: sh -c "cd /etc/ssl/traefik
       && wget traefik.me/cert.pem -O cert.pem
       && wget traefik.me/privkey.pem -O privkey.pem"
