@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   traefik-infomaniak:
-    container_name: traefik
+    container_name: traefik-infomaniak
     image: traefik:v2.5.3
     profiles: ["production"]
     command:
