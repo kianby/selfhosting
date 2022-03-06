@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  traefik:
+  traefik-infomaniak:
     container_name: traefik
     image: traefik:v2.5.3
     profiles: ["production"]
@@ -13,15 +13,11 @@ services:
       - --entrypoints.https.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL}
       - --certificatesresolvers.letsencrypt.acme.storage=/acme.json
-      - --certificatesresolvers.letsencrypt.acme.tlschallenge=true
-      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
-      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
-      #- --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=gandiv5
-      #- --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
-      # staging server
-      #- --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
-    #environment:
-      #- GANDIV5_API_KEY=${GANDIV5_API_KEY}
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
+      # example : infomaniak
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=infomaniak
+    environment:
+      - INFOMANIAK_ACCESS_TOKEN=${LETSENCRYPT_DNSPROVIDER_TOKEN}
     labels: 
       - traefik.enable=true
       - traefik.http.routers.api.entrypoints=http

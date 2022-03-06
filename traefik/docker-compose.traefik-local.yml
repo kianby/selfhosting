@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  traefik:
+  traefik-local:
     container_name: traefik-local
     image: traefik:v2.5.3
     profiles: ["testing"]   
@@ -36,7 +36,8 @@ services:
       - ${ROOT_INSTALL}/selfhosting/traefik/tls.yml:/etc/traefik/tls.yml
       - certs:/etc/ssl/traefik
 
-  reverse-proxy-https-helper:
+  traefik-reverse-proxy-https-helper:
+    container_name: traefik-reverse-proxy-https-helper
     image: alpine
     profiles: ["testing"]   
     command: sh -c "cd /etc/ssl/traefik
