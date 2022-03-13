@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ} 
+    volumes:
+      - ${ROOT_INSTALL}/data/heimdall:/config
+    expose:
+      - 80
+    networks:
+      - wwww-frontend      
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dashy.rule=Host(`${FQDN_DASHBOARD}`) 
+      - traefik.http.routers.dashy.entrypoints=https
+      - traefik.http.routers.dashy.tls=true
+      - traefik.docker.network=wwww-frontend      
+  
+
