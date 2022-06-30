@@ -13,9 +13,9 @@ services:
       - 80
     restart: unless-stopped
     volumes:
-      - ${lychee_conf}:/conf
-      - ${lychee_uploads}:/uploads
-      - ${lychee_sym}:/sym 
+      - lychee_conf:/conf
+      - lychee_uploads:/uploads
+      - lychee_sym:/sym 
     labels:
       - traefik.enable=true
       - traefik.http.routers.photo.rule=Host(`${HOST_LYCHEE}.${DOMAIN}`)
