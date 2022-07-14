@@ -34,7 +34,9 @@ networks:
   selfoss-frontend:
     name: selfoss-frontend    
   shaarli-frontend:
-    name: shaarli-frontend    
+    name: shaarli-frontend  
+  source-frontend:
+    name: source-frontend  
   wallabag-frontend:
     name: wallabag-frontend    
   wwww-frontend:

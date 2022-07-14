@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  server:
+    image: gitea/gitea:1.16.9-rootless
+    restart: always
+    volumes:
+      - gitea_data:/var/lib/gitea
+      - gitea_config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "2222:2222"
+    expose:
+      - 3000
+    networks:
+      - source-frontend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.source.rule=Host(`${HOST_SOURCE}.${DOMAIN}`)
+      - traefik.http.routers.source.entrypoints=https
+      - traefik.http.routers.source.tls=true
+      - traefik.docker.network=source-frontend
+volumes:
+  gitea_data:
+  gitea_config:
