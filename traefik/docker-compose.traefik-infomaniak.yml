@@ -54,6 +54,7 @@ services:
       - seafile-frontend
       - selfoss-frontend
       - shaarli-frontend
+      - source-frontend
       - wallabag-frontend
       - wwww-frontend
     restart: unless-stopped
