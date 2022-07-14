@@ -20,3 +20,4 @@ Compose files refer to [service profiles](https://docs.docker.com/compose/profil
 ### Network diagram:
 
 ![network diag](__doc__/nwdiag.png)
+
