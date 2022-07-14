@@ -13,15 +13,14 @@ services:
     ports:
       - "3000:3000"
       - "2222:2222"
-    expose:
-      - 3000
     networks:
       - source-frontend
     labels:
       - traefik.enable=true
-      - traefik.http.routers.source.rule=Host(`${HOST_SOURCE}.${DOMAIN}`)
-      - traefik.http.routers.source.entrypoints=https
-      - traefik.http.routers.source.tls=true
+      - traefik.http.routers.gitea.rule=Host(`${HOST_GITEA}.${DOMAIN}`)
+      - traefik.http.services.gitea.loadbalancer.server.port=3000
+      - traefik.http.routers.gitea.entrypoints=https
+      - traefik.http.routers.gitea.tls=true
       - traefik.docker.network=source-frontend
 volumes:
   gitea_data:
