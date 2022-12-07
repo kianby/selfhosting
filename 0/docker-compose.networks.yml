@@ -3,34 +3,34 @@ version: '3.8'
 networks:
   dmz:
     name: dmz
-  baikal-frontend:
-    name: baikal-frontend
+  # baikal-frontend:
+  #   name: baikal-frontend
   blog-frontend:
     name: blog-frontend
   blog-backend:
     name: blog-backend
-  deluge-frontend:
-    name: deluge-frontend
-  dokuwiki-frontend:
-    name: dokuwiki-frontend
+  # deluge-frontend:
+  #   name: deluge-frontend
+  # dokuwiki-frontend:
+  #   name: dokuwiki-frontend
   glances-frontend:
     name: glances-frontend
-  netdata-frontend:
-    name: netdata-frontend
-  netdata-backend:
-    name: netdata-backend
-  photo-frontend:
-    name: photo-frontend
-  photo-backend:
-    name: photo-backend
+  # netdata-frontend:
+  #   name: netdata-frontend
+  # netdata-backend:
+  #   name: netdata-backend
+  # photo-frontend:
+  #   name: photo-frontend
+  # photo-backend:
+  #   name: photo-backend
   portainer-frontend:
     name: portainer-frontend
-  posteio-frontend:
-    name: portainer-frontend
-  seafile-frontend:
-    name: seafile-frontend
-  seafile-backend:
-    name: seafile-backend     
+  # posteio-frontend:
+  #   name: portainer-frontend
+  # seafile-frontend:
+  #   name: seafile-frontend
+  # seafile-backend:
+  #   name: seafile-backend     
   selfoss-frontend:
     name: selfoss-frontend    
   shaarli-frontend:

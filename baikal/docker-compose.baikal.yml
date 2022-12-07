@@ -4,7 +4,6 @@ services:
   baikal:
     container_name: baikal
     image: ckulka/baikal:nginx
-    profiles: ["disabled"]
     networks:
       - baikal-frontend    
     expose:
@@ -19,6 +18,7 @@ services:
       - traefik.http.routers.baikal.entrypoints=https
       - traefik.http.routers.baikal.tls=true
       - traefik.docker.network=baikal-frontend
+    profiles: ["disabled"]
 
 volumes:
   baikal_config: 
