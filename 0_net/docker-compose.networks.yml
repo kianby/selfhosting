@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  dmz:
+    name: dmz
+  blog-frontend:
+    name: blog-frontend
+  blog-backend:
+    name: blog-backend
+  glances-frontend:
+    name: glances-frontend
+  portainer-frontend:
+    name: portainer-frontend
+  selfoss-frontend:
+    name: selfoss-frontend  
+  shaarli-frontend:
+    name: shaarli-frontend
+  source-frontend:
+    name: source-frontend  
+  wallabag-frontend:
+    name: wallabag-frontend
+  wwww-frontend:
+    name: wwww-frontend
