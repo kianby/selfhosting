@@ -15,16 +15,9 @@ services:
       - traefik.enable=true      
     networks:
       - dmz
-      - baikal-frontend
       - blog-frontend
-      - deluge-frontend
-      - dokuwiki-frontend
       - glances-frontend
-      - netdata-frontend
-      - photo-frontend
       - portainer-frontend
-      - posteio-frontend
-      - seafile-frontend
       - selfoss-frontend
       - shaarli-frontend
       - source-frontend
