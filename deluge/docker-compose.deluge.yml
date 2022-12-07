@@ -31,7 +31,6 @@ services:
       - traefik.http.middlewares.delugeRedir.redirectregex.regex=^(.*)${PATH_DELUGE}$$
       - traefik.http.middlewares.delugeRedir.redirectregex.replacement=$${1}${PATH_DELUGE}/
       - traefik.docker.network=deluge-frontend
-    profiles: ["disabled"]
 
   torrent:
     container_name: torrent
@@ -45,8 +44,7 @@ services:
       - 80
     # shortcut to bypass traefik limitation
     ports:
-      - ${DOWNLOAD_HTTP_PORT}:80         
-    profiles: ["disabled"]
+      - ${DOWNLOAD_HTTP_PORT}:80
 
 networks:
   deluge-frontend:

@@ -4,7 +4,6 @@ services:
   photoview-db:
     container_name: photoview-db
     image: mariadb:10.5
-    profiles: ["disabled"]
     restart: unless-stopped
     environment:
       - MYSQL_DATABASE=photoview
@@ -19,7 +18,6 @@ services:
   photoview:
     container_name: photoview
     image: viktorstrate/photoview:2
-    profiles: ["disabled"]
     restart: unless-stopped
     expose:
       - 80

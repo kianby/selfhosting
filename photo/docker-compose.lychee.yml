@@ -22,7 +22,6 @@ services:
       - traefik.http.routers.photo.entrypoints=https
       - traefik.http.routers.photo.tls=true
       - traefik.docker.network=photo-frontend
-    profiles: ["disabled"]
 
 networks:
   photo-frontend:

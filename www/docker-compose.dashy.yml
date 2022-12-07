@@ -6,7 +6,6 @@ services:
     # build: .
     image: lissy93/dashy
     container_name: dashy
-    profiles: ["disabled"]
     # Pass in your config file below, by specifying the path on your host machine
     volumes:
       - ${ROOT_INSTALL}/data/dashy/config.yml:/app/public/conf.yml

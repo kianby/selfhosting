@@ -20,7 +20,6 @@ services:
       - traefik.http.routers.dokuwiki.entrypoints=https
       - traefik.http.routers.dokuwiki.tls=true
       - traefik.docker.network=dokuwiki-frontend
-    profiles: ["disabled"]
 
 networks:
   dokuwiki-frontend:
