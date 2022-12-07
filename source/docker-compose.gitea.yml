@@ -21,6 +21,12 @@ services:
       - traefik.http.routers.gitea.entrypoints=https
       - traefik.http.routers.gitea.tls=true
       - traefik.docker.network=source-frontend
+
+networks:
+  source-frontend:
+    name: source-frontend  
+
 volumes:
   gitea_data:
   gitea_config:
+

@@ -25,5 +25,9 @@ services:
       - traefik.http.middlewares.portainerRedir.redirectregex.replacement=$${1}${PATH_PORTAINER}/
       - traefik.docker.network=portainer-frontend
 
+networks:
+  portainer-frontend:
+    name: portainer-frontend
+
 volumes:
   portainer_data:

@@ -22,4 +22,6 @@ services:
       - traefik.http.routers.dashy.tls=true
       - traefik.docker.network=wwww-frontend      
   
-
+networks:
+  wwww-frontend:
+    name: wwww-frontend

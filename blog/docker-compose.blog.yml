@@ -28,3 +28,9 @@ services:
       - traefik.http.routers.blog.entrypoints=https
       - traefik.http.routers.blog.tls=true
       - traefik.docker.network=blog-frontend
+
+networks:
+  blog-frontend:
+    name: blog-frontend
+  blog-backend:
+    name: blog-backend

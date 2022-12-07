@@ -19,5 +19,9 @@ services:
       - traefik.http.routers.shaarli.tls=true
       - traefik.docker.network=shaarli-frontend           
 
+networks:
+  shaarli-frontend:
+    name: shaarli-frontend
+
 volumes:
   shaarli-cache:      

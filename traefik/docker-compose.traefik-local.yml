@@ -47,5 +47,9 @@ services:
     volumes:
       - certs:/etc/ssl/traefik
 
+networks:
+  dmz:
+    name: dmz
+
 volumes:
   certs:

@@ -21,6 +21,10 @@ services:
       - traefik.http.routers.wallabag.tls=true
       - traefik.docker.network=wallabag-frontend 
 
+networks:
+  wallabag-frontend:
+    name: wallabag-frontend
+
 volumes:
   wallabag_data: 
   wallabag_images:    
