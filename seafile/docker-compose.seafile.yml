@@ -60,6 +60,12 @@ services:
       - traefik.http.routers.seafile.tls=true
       - traefik.docker.network=seafile-frontend
 
+networks:
+  seafile-frontend:
+    name: seafile-frontend
+  seafile-backend:
+    name: seafile-backend
+
 volumes:
   seafile_db:
   seafile_data:

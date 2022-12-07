@@ -24,6 +24,12 @@ services:
       - traefik.docker.network=photo-frontend
     profiles: ["disabled"]
 
+networks:
+  photo-frontend:
+    name: photo-frontend
+  photo-backend:
+    name: photo-backend
+
 volumes:
   lychee_conf:
   lychee_uploads:

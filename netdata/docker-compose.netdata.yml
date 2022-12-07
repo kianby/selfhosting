@@ -47,6 +47,12 @@ services:
     networks:
       - netdata-backend 
 
+networks:
+  netdata-frontend:
+    name: netdata-frontend
+  netdata-backend:
+    name: netdata-backend
+
 volumes:
   netdataconfig:
   netdatalib:

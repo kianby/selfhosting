@@ -47,7 +47,11 @@ services:
     ports:
       - ${DOWNLOAD_HTTP_PORT}:80         
     profiles: ["disabled"]
-    
+
+networks:
+  deluge-frontend:
+    name: deluge-frontend
+
 volumes:
   deluge_config:
   deluge_downloads:

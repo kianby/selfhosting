@@ -20,6 +20,10 @@ services:
       - traefik.docker.network=baikal-frontend
     profiles: ["disabled"]
 
+networks:
+  baikal-frontend:
+     name: baikal-frontend
+
 volumes:
   baikal_config: 
   baikal_data: 

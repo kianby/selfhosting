@@ -27,3 +27,7 @@ services:
       - posteio-frontend
     healthcheck:
       disable: true       
+
+networks:
+  posteio-frontend:
+    name: portainer-frontend
